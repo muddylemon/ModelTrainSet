@@ -1,0 +1,11 @@
+# Version control
+GitPython==3.1.43
+
+# Jira integration
+jira==3.8.0
+
+# HTTP client (used by jira)
+urllib3==1.26.15
+
+# Environment variable management
+python-dotenv==1.0.1

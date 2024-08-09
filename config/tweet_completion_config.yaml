@@ -1,0 +1,6 @@
+creator_type: TweetDatasetCreator
+formatter: TweetCompletionFormatter
+input_file: ./data/gonzohacker-tweets.js
+output_file: ./datasets/gz-completion-dataset.json
+twitter_username: gonzohacker
+min_tweet_length: 20
