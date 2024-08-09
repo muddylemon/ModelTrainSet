@@ -20,7 +20,7 @@ ModelTrainSet is a Python project designed to create custom datasets for trainin
 1. Clone the repository:
 
    ```
-   git clone https://github.com/muddylemon/ModelTrainSet.git
+   git clone https://github.com/yourusername/ModelTrainSet.git
    cd ModelTrainSet
    ```
 
