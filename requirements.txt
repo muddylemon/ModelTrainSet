@@ -10,6 +10,8 @@ urllib3==1.26.15
 # Environment variable management
 python-dotenv==1.0.1
 
+# Natural language processing
 nltk==3.8.2
 
+# YAML parsing
 pyYAML==6.0.2
