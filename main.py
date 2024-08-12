@@ -1,7 +1,8 @@
 import logging
-import yaml
 from dataset_creator.creators.tweet_creator import TweetDatasetCreator
 from dataset_creator.creators.gitjira_creator import GitJiraDatasetCreator
+from dataset_creator.creators.text_triplets_creator import TextTripletsDatasetCreator
+
 import sys
 
 
