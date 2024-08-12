@@ -1,0 +1,4 @@
+creator_type: GenericDatasetCreator
+loader_type: json
+input_file: ./data/input.json
+output_file: ./datasets/json_dataset.json

@@ -2,6 +2,7 @@ import logging
 from dataset_creator.creators.tweet_creator import TweetDatasetCreator
 from dataset_creator.creators.gitjira_creator import GitJiraDatasetCreator
 from dataset_creator.creators.text_triplets_creator import TextTripletsDatasetCreator
+from dataset_creator.creators.generic_creator import GenericDatasetCreator
 
 import sys
 
@@ -48,6 +49,8 @@ def get_creator(config):
         return TweetDatasetCreator(config)
     elif creator_type == 'GitJiraDatasetCreator':
         return GitJiraDatasetCreator(config)
+    elif creator_type == 'GenericDatasetCreator':
+        return GenericDatasetCreator(config)
     else:
         raise ValueError(f"Unknown creator type: {creator_type}")
 
