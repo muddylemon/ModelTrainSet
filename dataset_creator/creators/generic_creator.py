@@ -1,7 +1,13 @@
 from ..base import BaseDatasetCreator, DataLoader, DataProcessor, DataFormatter
-from ..loaders import JSONLoader, CSVLoader, ExcelLoader, XMLLoader, SQLLoader
-from ..processors import TextCleanerProcessor, SentimentAnalysisProcessor
-from ..formatters import JSONLinesFormatter, ConversationFormatter
+from ..loaders.csv_loader import CSVLoader
+from ..loaders.excel_loader import ExcelLoader
+from ..loaders.json_loader import JSONLoader
+from ..loaders.sql_loader import SQLLoader
+from ..loaders.xml_loader import XMLLoader
+from ..processors.text_cleaner_processor import TextCleanerProcessor
+from ..processors.sentiment_analysis_processor import SentimentAnalysisProcessor
+from ..formatters.conversation_formatter import ConversationFormatter
+
 
 class GenericDatasetCreator(BaseDatasetCreator):
     def get_loader(self) -> DataLoader:
@@ -34,7 +40,6 @@ class GenericDatasetCreator(BaseDatasetCreator):
     def get_formatter(self) -> DataFormatter:
         formatter_type = self.config.get('formatter_type', '').lower()
         formatters = {
-            'jsonlines': JSONLinesFormatter,
             'conversation': ConversationFormatter
         }
         formatter_class = formatters.get(formatter_type)

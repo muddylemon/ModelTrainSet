@@ -51,6 +51,8 @@ def get_creator(config):
         return GitJiraDatasetCreator(config)
     elif creator_type == 'GenericDatasetCreator':
         return GenericDatasetCreator(config)
+    elif creator_type == 'TextTripletsDatasetCreator':
+        return TextTripletsDatasetCreator(config)
     else:
         raise ValueError(f"Unknown creator type: {creator_type}")
 

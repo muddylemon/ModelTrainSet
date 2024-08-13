@@ -21,14 +21,14 @@ class ConversationFormatter(DataFormatter):
         if style in formatters:
             return formatters[style](data)
         else:
-            raise ValueError(f"Unknown style: {style}")
+            raise ValueError(f"""Unknown style: {style}""")
 
     def _format_sentence_completion(self, data: List[Dict]) -> List[Dict]:
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Complete the following sentence: {
-                        item['partial_sentence']}"},
+                    {"role": "user",
+                        "content": f"""Complete the following sentence: { item['partial_sentence']}"""},
                     {"role": "assistant", "content": item['completion']}
                 ]
             } for item in data
@@ -38,8 +38,8 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Compose a reply to the following email:\n\n{
-                        item['email_body']}"},
+                    {"role": "user",
+                     "content": f"""Compose a reply to the following email:\n\n{item['email_body']}"""},
                     {"role": "assistant", "content": item['reply']}
                 ]
             } for item in data
@@ -49,8 +49,8 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Continue this dialogue:\n\nPerson A: {
-                        item['person_a']}\nPerson B: {item['person_b']}\nPerson A:"},
+                    {"role": "user",
+                        "content": f"""Continue this dialogue: \n\nPerson A: { item['person_a']}\nPerson B: {item['person_b']}\nPerson A: """},
                     {"role": "assistant", "content": item['continuation']}
                 ]
             } for item in data
@@ -60,8 +60,8 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Context: {
-                        item['context']}\n\nQuestion: {item['question']}"},
+                    {"role": "user",
+                     "content": f"""Context: {   item['context']}\n\nQuestion: {item['question']}"""},
                     {"role": "assistant", "content": item['answer']}
                 ]
             } for item in data
@@ -71,8 +71,8 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Summarize the following text:\n\n{
-                        item['full_text']}"},
+                    {"role": "user", "content": f"""Summarize the following text: \n\n{
+                        item['full_text']}"""},
                     {"role": "assistant", "content": item['summary']}
                 ]
             } for item in data
@@ -82,8 +82,8 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Translate the following {
-                        item['source_language']} text to {item['target_language']}:\n\n{item['source_text']}"},
+                    {"role": "user", "content": f"""Translate the following {
+                        item['source_language']} text to {item['target_language']}: \n\n{item['source_text']}"""},
                     {"role": "assistant", "content": item['translation']}
                 ]
             } for item in data
@@ -93,10 +93,10 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Analyze the sentiment of the following text:\n\n{
-                        item['text']}"},
-                    {"role": "assistant", "content": f"The sentiment of the text is {
-                        item['sentiment']}. {item.get('explanation', '')}"}
+                    {"role": "user", "content": f"""Analyze the sentiment of the following text: \n\n{
+                        item['text']}"""},
+                    {"role": "assistant", "content": f"""The sentiment of the text is {
+                        item['sentiment']}. {item.get('explanation', '')}"""}
                 ]
             } for item in data
         ]
@@ -106,7 +106,7 @@ class ConversationFormatter(DataFormatter):
             {
                 "conversations": [
                     {"role": "user",
-                     "content": f"Generate {item['language']} code for the following task: \n\n{item['task_description']}"},
+                     "content": f"""Generate {item['language']} code for the following task: \n\n{item['task_description']}"""},
                     {"role": "assistant", "content": item['code']}
                 ]
             } for item in data
@@ -116,8 +116,8 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Paraphrase the following sentence:\n\n{
-                        item['original_sentence']}"},
+                    {"role": "user", "content": f"""Paraphrase the following sentence: \n\n{
+                        item['original_sentence']}"""},
                     {"role": "assistant", "content": item['paraphrase']}
                 ]
             } for item in data
@@ -127,8 +127,8 @@ class ConversationFormatter(DataFormatter):
         return [
             {
                 "conversations": [
-                    {"role": "user", "content": f"Fill in the blank in the following sentence:\n\n{
-                        item['sentence_with_blank']}"},
+                    {"role": "user", "content": f"""Fill in the blank in the following sentence: \n\n{
+                        item['sentence_with_blank']}"""},
                     {"role": "assistant", "content": item['filled_word']}
                 ]
             } for item in data

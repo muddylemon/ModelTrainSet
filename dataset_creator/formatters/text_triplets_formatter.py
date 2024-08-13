@@ -4,7 +4,7 @@ from ..base import DataFormatter
 
 class TextTripletsFormatter(DataFormatter):
     def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
-        return [
+        entires = [
             {
                 "conversations": [
                     {
@@ -20,3 +20,7 @@ class TextTripletsFormatter(DataFormatter):
             }
             for item in data
         ]
+        # shuffle the entries
+        import random
+        random.shuffle(entires)
+        return entires

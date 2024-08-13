@@ -14,7 +14,6 @@ class TextLoader(DataLoader):
             if filename.endswith('.txt'):
                 with open(os.path.join(input_dir, filename), 'r', encoding='utf-8') as f:
                     content = f.read()
-                    # Remove titles, headings, and extraneous content
                     cleaned_content = self.clean_text(content)
                     data.append(
                         {'text': cleaned_content, 'filename': filename})
@@ -46,7 +45,7 @@ class TextLoader(DataLoader):
 
         # Normalize quotes
         text = re.sub(r'[""]', '"', text)
-        text = re.sub(r'['']', "'", text)
+        text = re.sub(r"['']", "'", text)
 
         # Remove extra whitespace and empty lines
         text = re.sub(r'\s+', ' ', text)
