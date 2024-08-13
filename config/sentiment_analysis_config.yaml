@@ -1,0 +1,9 @@
+creator_type: GenericDatasetCreator
+loader_type: csv
+input_file: ./data/reviews.csv
+processor_type: sentiment_analysis
+formatter_type: conversation
+output_file: ./datasets/sentiment_analysis_dataset.json
+text_field: review_text
+input_field: review_text
+output_field: sentiment

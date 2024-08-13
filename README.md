@@ -2,12 +2,66 @@
 
 ModelTrainSet is a Python project designed to create custom datasets for training machine learning models. It currently supports creating datasets from Twitter data and Git/Jira integration data.
 
-## Features
+## Supported Components
 
-- Create datasets from Twitter archives
-- Create datasets from Git repositories integrated with Jira
-- Extensible architecture for adding new data sources
-- Configuration-based setup for easy customization
+ModelTrainSet supports a variety of loaders, processors, and formatters to handle different data sources and processing needs. Below is a list of currently supported components:
+
+### Loaders
+
+Loaders are responsible for reading data from various file formats and sources.
+
+- **JSONLoader**: Loads data from JSON files.
+- **CSVLoader**: Loads data from CSV files.
+- **ExcelLoader**: Loads data from Excel spreadsheets.
+- **XMLLoader**: Loads data from XML files.
+- **SQLLoader**: Loads data from SQL databases using custom queries.
+- **TweetLoader**: Loads data from Twitter archive files.
+- **GitJiraLoader**: Loads data from Git repositories integrated with Jira.
+- **TextLoader**: Loads data from plain text files.
+
+### Processors
+
+Processors perform operations on the loaded data to prepare it for formatting.
+
+- **TweetProcessor**: Processes and filters tweet data.
+- **TextTripletsProcessor**: Processes text data into triplets for language modeling.
+- **TextCleanerProcessor**: Performs basic text cleaning operations.
+- **SentimentAnalysisProcessor**: Adds sentiment analysis scores to text data.
+
+### Formatters
+
+Formatters structure the processed data into the final output format.
+
+- **TweetSubjectFormatter**: Formats tweets with their extracted subjects.
+- **TweetCompletionFormatter**: Formats tweets for completion tasks.
+- **GitJiraFormatter**: Formats Git and Jira data for code generation tasks.
+- **TextTripletsFormatter**: Formats text triplets for language modeling tasks.
+- **JSONLinesFormatter**: Formats data into JSONLines format.
+- **ConversationFormatter**: Formats data into a conversation structure.
+
+To use these components, specify the appropriate types in your configuration file:
+
+```yaml
+creator_type: GenericDatasetCreator
+loader_type: <loader_name>
+processor_type: <processor_name>
+formatter_type: <formatter_name>
+```
+
+Replace `<loader_name>`, `<processor_name>`, and `<formatter_name>` with the desired component types from the lists above.
+
+For example:
+
+```yaml
+creator_type: GenericDatasetCreator
+loader_type: csv
+processor_type: sentiment_analysis
+formatter_type: conversation
+```
+
+This configuration would load data from a CSV file, perform sentiment analysis, and format the output as a conversation dataset.
+
+You can extend ModelTrainSet by adding new loaders, processors, and formatters to handle additional data sources and processing needs.
 
 ## Prerequisites
 
@@ -20,7 +74,7 @@ ModelTrainSet is a Python project designed to create custom datasets for trainin
 1. Clone the repository:
 
    ```
-   git clone https://github.com/yourusername/ModelTrainSet.git
+   git clone https://github.com/muddylemon/ModelTrainSet.git
    cd ModelTrainSet
    ```
 
