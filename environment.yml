@@ -16,6 +16,7 @@ dependencies:
   - datasets
   - accelerate
   - tqdm
+  - optuna
   - pyyaml
   - nltk
   - pandas
