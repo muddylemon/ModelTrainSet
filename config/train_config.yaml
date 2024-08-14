@@ -24,7 +24,7 @@ learning_rate: 2.0e-4
 logging_steps: 25
 weight_decay: 0.01
 dataset_num_proc: 4
-packing: true
+packing: false
 output_dir: /mnt/g/modelville/outputs/muddylemon
 push_to_hub: true
 hf_username: lckidwell
