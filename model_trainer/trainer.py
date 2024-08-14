@@ -1,6 +1,12 @@
 import subprocess
 import logging
-from unsloth import FastLanguageModel, TrainingArguments, SFTTrainer
+
+from transformers import TrainingArguments
+from unsloth import FastLanguageModel, SFTTrainer
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 logger = logging.getLogger(__name__)
 
