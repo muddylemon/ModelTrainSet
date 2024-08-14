@@ -1,8 +1,12 @@
 import subprocess
 import logging
 
+from datasets import load_dataset
+from unsloth import FastLanguageModel, standardize_sharegpt, is_bfloat16_supported
 from transformers import TrainingArguments
-from unsloth import FastLanguageModel, SFTTrainer
+from trl import SFTTrainer
+from dotenv import load_dotenv
+
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -41,6 +45,8 @@ class ModelTrainer:
         training_args = TrainingArguments(
             output_dir=self.config['output_dir'],
             learning_rate=self.config['learning_rate'],
+            fp16=not is_bfloat16_supported(),
+            bf16=is_bfloat16_supported(),
             per_device_train_batch_size=self.config['per_device_train_batch_size'],
             gradient_accumulation_steps=self.config['gradient_accumulation_steps'],
             num_train_epochs=self.config['num_train_epochs'],

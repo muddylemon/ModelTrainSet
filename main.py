@@ -11,6 +11,8 @@ from model_trainer.trainer import ModelTrainer
 from model_trainer.utils import load_config, load_custom_dataset
 
 from model_trainer.hyperparameter_tuning import run_hyperparameter_tuning
+from unsloth import standardize_sharegpt
+
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -86,6 +88,7 @@ def main():
     elif args.mode == 'train':
         trainer = ModelTrainer(config)
         dataset = load_custom_dataset(config['dataset_file'])
+        dataset = standardize_sharegpt(dataset)
         train_dataset, eval_dataset = dataset.train_test_split(
             test_size=0.1).values()
         trained_model, model, tokenizer = trainer.train(
