@@ -2,10 +2,9 @@ import subprocess
 import logging
 
 from datasets import load_dataset
-from unsloth import FastLanguageModel, standardize_sharegpt, is_bfloat16_supported
+from unsloth import FastLanguageModel, is_bfloat16_supported
 from transformers import TrainingArguments
 from trl import SFTTrainer
-from dotenv import load_dotenv
 
 
 logging.basicConfig(level=logging.INFO,
