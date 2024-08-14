@@ -1,37 +1,73 @@
-from unsloth import FastLanguageModel, standardize_sharegpt, is_bfloat16_supported
-from transformers import TrainingArguments
-from trl import SFTTrainer
+import subprocess
+import logging
+from unsloth import FastLanguageModel, TrainingArguments, SFTTrainer
+
+logger = logging.getLogger(__name__)
 
 
 class ModelTrainer:
     def __init__(self, config):
         self.config = config
 
-    def prepare_dataset(self, data):
-        return standardize_sharegpt(data)
-
     def load_model(self):
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name=self.config.model_name,
-            max_seq_length=self.config.max_seq_length,
-            load_in_4bit=self.config.load_in_4bit,
+            model_name=self.config['model_name'],
+            max_seq_length=self.config['max_seq_length'],
+            load_in_4bit=self.config['load_in_4bit'],
         )
-        # ... (rest of model loading code)
+
+        model = FastLanguageModel.get_peft_model(
+            model,
+            r=self.config['r'],
+            target_modules=self.config['target_modules'],
+            lora_alpha=self.config['lora_alpha'],
+            lora_dropout=self.config['lora_dropout'],
+            bias=self.config['bias'],
+            use_gradient_checkpointing=self.config['use_gradient_checkpointing'],
+            random_state=self.config['random_state'],
+        )
+
         return model, tokenizer
 
-    def train(self, dataset):
+    def train(self, train_dataset, eval_dataset):
         model, tokenizer = self.load_model()
+
         training_args = TrainingArguments(
-            # ... (training arguments from your existing code)
+            output_dir=self.config['output_dir'],
+            learning_rate=self.config['learning_rate'],
+            per_device_train_batch_size=self.config['per_device_train_batch_size'],
+            gradient_accumulation_steps=self.config['gradient_accumulation_steps'],
+            num_train_epochs=self.config['num_train_epochs'],
+            warmup_ratio=self.config['warmup_ratio'],
+            logging_dir=f"{self.config['output_dir']}/logs",
+            logging_steps=10,
+            evaluation_strategy=self.config['evaluation']['evaluation_strategy'],
+            eval_steps=self.config['evaluation']['eval_steps'],
+            save_strategy=self.config['evaluation']['save_strategy'],
+            save_steps=self.config['evaluation']['save_steps'],
+            load_best_model_at_end=True,
         )
+
         trainer = SFTTrainer(
-            # ... (trainer setup from your existing code)
+            model=model,
+            tokenizer=tokenizer,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            dataset_text_field="text",
+            max_seq_length=self.config['max_seq_length'],
+            dataset_num_proc=self.config['dataset_num_proc'],
+            packing=self.config['packing'],
+            args=training_args,
         )
+
         trainer.train()
         return trainer, model, tokenizer
 
-    def save_model(self, trainer, model, tokenizer):
-        # ... (model saving code)
+    def save_model(self, model, tokenizer):
+        model.save_pretrained(self.config['output_dir'])
+        tokenizer.save_pretrained(self.config['output_dir'])
 
-    def push_to_hub(self, model, tokenizer):
-        # ... (hub pushing code)
+    def export_to_ollama(self, model_name):
+        subprocess.run(["ollama", "create", model_name,
+                       f"FROM {self.config['output_dir']}"])
+        logger.info(f"Model exported to Ollama as {model_name}")

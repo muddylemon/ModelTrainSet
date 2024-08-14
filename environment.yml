@@ -1,0 +1,32 @@
+name: modeltrainset
+channels:
+  - pytorch
+  - nvidia
+  - xformers
+  - conda-forge
+  - huggingface
+dependencies:
+  - python=3.10
+  - pytorch
+  - pytorch-cuda=12.1
+  - torchvision
+  - torchaudio
+  - xformers
+  - transformers
+  - datasets
+  - accelerate
+  - tqdm
+  - pyyaml
+  - nltk
+  - pandas
+  - openpyxl
+  - sqlalchemy
+  - gitpython
+  - jira
+  - python-dotenv
+  - pip
+  - pip:
+    - bitsandbytes
+    - "unsloth[conda] @ git+https://github.com/unslothai/unsloth.git"
+    - peft
+    - trl

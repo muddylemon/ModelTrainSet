@@ -40,6 +40,10 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+# Conda
+.conda/
+*.conda
+
 # Unit test / coverage reports
 htmlcov/
 .tox/

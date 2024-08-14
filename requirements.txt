@@ -15,3 +15,10 @@ nltk==3.8.2
 
 # YAML parsing
 pyYAML==6.0.2
+
+# progress bar
+tqdm==4.65.0
+
+# Hyperparameter optimization
+optuna==2.10.0
+
