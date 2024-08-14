@@ -29,5 +29,5 @@ output_dir: /mnt/g/modelville/outputs/muddylemon
 push_to_hub: true
 hf_username: lckidwell
 trained_model_name: muddylemon
-dataset_file: /mnt/g/modelville/datasets
+dataset_file: /mnt/g/modelville/datasets/
 export_to_ollama: true
