@@ -2,7 +2,10 @@ import optuna
 import json
 import logging
 from datasets import load_dataset
-from unsloth import FastLanguageModel, TrainingArguments, SFTTrainer
+from unsloth import FastLanguageModel, SFTTrainer
+from trl import SFTTrainer
+from transformers import TrainingArguments
+
 from .trainer import ModelTrainer
 from .utils import load_config
 
