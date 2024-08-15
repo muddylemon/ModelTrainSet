@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 from ..base import DataFormatter
 import re
-from subjectify import subjectify
+from tools.subjectify import subjectify
 
 
 class TweetSubjectFormatter(DataFormatter):

@@ -1,4 +1,4 @@
-from llm import generate
+from tools.llm import generate
 
 
 def subjectify(input_string: str) -> str:
