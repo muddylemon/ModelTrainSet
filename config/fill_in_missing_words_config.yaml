@@ -1,0 +1,7 @@
+creator_type: FillInMissingWordsCreator
+input_directory: ./data/text_files
+output_file: ./datasets/fill_in_missing_words_dataset.json
+min_sentence_length: 10
+words_to_remove: 1
+formatter_type: conversation
+style: fill_in_the_blank
