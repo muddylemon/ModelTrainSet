@@ -102,125 +102,7 @@ If you prefer the classic experience, follow these steps:
 
 ## 🚂 All Aboard! (Usage)
 
-1. Create a YAML config file (like `config.yaml`) for your journey. Here are some example destinations:
-
-   For a Twitter dataset:
-
-   ```yaml
-   creator_type: TweetDatasetCreator
-   formatter: TweetSubjectFormatter
-   input_file: path/to/tweet_archive.json
-   output_file: ./data/tweets/username-subject-dataset.json
-   twitter_username: username
-   min_tweet_length: 25
-   ```
-
-   For a Git/Jira adventure:
-
-   ```yaml
-   creator_type: GitJiraDatasetCreator
-   repo_path: path/to/local/repo
-   jira_server: https://your-jira-instance.atlassian.net
-   jira_email: your-email@example.com
-   jira_api_token: your-jira-api-token
-   jira_prefix: PROJECTKEY
-   output_file: ./data/gitjira/repo-name-dataset.json
-   ```
-
-   For training a model:
-
-   ```yaml
-   model_name: mistralai/Mistral-7B-Instruct-v0.2
-   max_seq_length: 2048
-   load_in_4bit: true
-   r: 16
-   target_modules: 
-     - q_proj
-     - k_proj
-     - v_proj
-     - o_proj
-     - gate_proj
-     - up_proj
-     - down_proj
-   lora_alpha: 16
-   lora_dropout: 0.05
-   bias: none
-   use_gradient_checkpointing: true
-   per_device_train_batch_size: 32
-   gradient_accumulation_steps: 4
-   warmup_steps: 100
-   num_train_epochs: 3
-   learning_rate: 2.0e-4
-   logging_steps: 25
-   weight_decay: 0.01
-   dataset_num_proc: 4
-   packing: true
-   output_dir: ./outputs/trained_model
-   push_to_hub: false
-   dataset_file: ./datasets/your_dataset.json
-   ```
-
-2. Start your engines:
-
-   For dataset creation:
-
-   ```bash
-   python main.py --mode dataset --config your_dataset_config.yaml
-   ```
-
-   For model training:
-
-   ```bash
-   python main.py --mode train --config your_training_config.yaml
-   ```
-
-   For hyperparameter tuning:
-
-   ```bash
-   python main.py --mode tune --config your_config.yaml
-   ```
-
-3. Watch the magic happen! Your dataset will be created or your model will be trained faster than you can say "overfitting"!
-
-4. Need more feedback? Add these flags:
-   - `--verbose`: Get chatty with detailed logs
-   - `--no-progress`: Silence those progress bars (but why would you want to?)
-
-   Example:
-
-   ```bash
-   python main.py --mode train --config your_training_config.yaml --verbose
-   ```
-
-5. After training, find your model in the `output_dir` specified in your config. It's like a graduation ceremony for your AI!
-
-6. If you set `push_to_hub: true` in your config, your model will automatically be uploaded to the Hugging Face Hub. Fame and glory await!
-
-Remember, whether you're creating datasets or training models, ModelTrainSet has got your back. Now go forth and let your data science dreams run wild! 🚂💨
-
-2. Start your engines:
-
-   ```bash
-   python main.py --mode dataset --config your_config.yaml
-   ```
-
-3. Watch the magic happen! Your dataset will be created faster than you can say "overfitting"!
-
-## 🚀 Advanced Features
-
-### Hyperparameter Tuning
-
-ModelTrainSet now supports automatic hyperparameter tuning using Optuna! To tune your model's hyperparameters:
-
-```bash
-python main.py --mode tune --config your_hyperparameter_config.yaml
-```
-
-This will run a series of trials to find the best hyperparameters for your model. The results will be saved in `best_params.json`.
-
-### Exporting to Ollama
-
-After training your model, you can now export it directly to Ollama! Just set `export_to_ollama: true` in your config file, and we'll handle the rest.
+For detailed instructions on how to use ModelTrainSet, check out our [comprehensive tutorial](docs/tutorial.md). It covers everything from creating datasets to training your own models!
 
 ## 🛤️ Extending Your Journey
 
@@ -229,6 +111,8 @@ Want to add a new stop on the ModelTrainSet line? Here's how:
 1. Create new loader, processor, or formatter classes in `dataset_creator/`.
 2. Add a new creator class in `dataset_creator/creators/`.
 3. Update `get_creator()` in `main.py` to recognize your new creation.
+
+For more details on contributing to ModelTrainSet, please read our [contribution guide](CONTRIBUTING.md).
 
 ## 🆘 Help! I'm Lost
 
@@ -240,7 +124,7 @@ If you find yourself in a dark tunnel:
 
 ## 🤝 Join the Crew
 
-Contributions are welcome! Whether you're fixing bugs, adding features, or just making our jokes funnier, we'd love to have you on board!
+Contributions are welcome! Whether you're fixing bugs, adding features, or just making our jokes funnier, we'd love to have you on board! Check out our [contribution guide](CONTRIBUTING.md) to get started.
 
 ## 📜 The Fine Print
 
