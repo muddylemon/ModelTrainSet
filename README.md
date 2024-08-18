@@ -127,7 +127,7 @@ If you find yourself in a dark tunnel:
 
 Contributions are welcome! Whether you're fixing bugs, adding features, or just making our jokes funnier, we'd love to have you on board! Check out our [contribution guide](CONTRIBUTING.md) to get started.
 
-## 📜 The Fine Print
+## 📜 The Fine Print on Your Ticket Stub
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. (It's basically "use it however you want, just don't blame us if something goes wrong".)
 
