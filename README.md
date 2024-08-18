@@ -102,7 +102,8 @@ If you prefer the classic experience, follow these steps:
 
 ## 🚂 All Aboard! (Usage)
 
-For detailed instructions on how to use ModelTrainSet, check out our [comprehensive tutorial](docs/tutorial.md). It covers everything from creating datasets to training your own models!
+For detailed instructions on how to use ModelTrainSet, check out our [comprehensive tutorial](docs/modeltrainset-tutorial.md). It covers everything from creating datasets to training your own models!
+We also provide a tutorial for [Fill In Missing Word style datasets](tutorials/fill-in-missing-words-tutorial.md) and [TextTriplets style datasets](tutorials/text-triplets-tutorial.md).
 
 ## 🛤️ Extending Your Journey
 
