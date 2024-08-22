@@ -24,14 +24,13 @@ systemPrompt = "You are a helpful assistant."
 
 
 def generate(prompt: str, context: List[Any] = [], model: str = LLAMA3,  systemPrompt: str = systemPrompt,
-             temperature: float = 0.8, num_predict: int = 4096, asJson: bool = False,) -> Tuple[str, List[Any]]:
+             temperature: float = 0.8, asJson: bool = False,) -> Tuple[str, List[Any]]:
     payload = {
         "prompt": prompt,
         "model": model,
         "context": context,
         "system": systemPrompt,
         "temperature": temperature,
-        "num_predict": num_predict,
         "stream": False
     }
     if asJson:
