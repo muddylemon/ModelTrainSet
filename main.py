@@ -7,6 +7,7 @@ from dataset_creator.creators.gitjira_creator import GitJiraDatasetCreator
 from dataset_creator.creators.text_triplets_creator import TextTripletsDatasetCreator
 from dataset_creator.creators.generic_creator import GenericDatasetCreator
 from dataset_creator.creators.fill_in_missing_words_creator import FillInMissingWordsDatasetCreator
+from dataset_creator.creators.rewrite_creator import ParagraphRewriteCreator
 
 from model_trainer.trainer import ModelTrainer
 from model_trainer.utils import load_config, load_custom_dataset
@@ -64,6 +65,8 @@ def get_creator(config):
         return TextTripletsDatasetCreator(config)
     elif creator_type == 'FillInMissingWordsDatasetCreator':
         return FillInMissingWordsDatasetCreator(config)
+    if creator_type == 'ParagraphRewriteCreator':
+        return ParagraphRewriteCreator(config)
     else:
         raise ValueError(f"Unknown creator type: {creator_type}")
 

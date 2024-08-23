@@ -1,0 +1,2376 @@
+README:
+# 🚂 ModelTrainSet: All Aboard the ML Express! 🚂
+
+Welcome to ModelTrainSet, your one-stop-shop for creating custom datasets and training machine learning models! Whether you're a data scientist, a machine learning engineer, or just someone who likes to play with big data and bigger models, ModelTrainSet has got your back!
+
+## 🎭 What's This All About?
+
+ModelTrainSet is like a Swiss Army knife for your data needs. It can:
+
+- 📥 Load data from various sources (JSON, CSV, Excel, XML, SQL, Git/Jira, Twitter)
+- 🧹 Clean and process your data
+- 🎨 Format your data for different ML tasks
+- 🚀 Train models using the latest techniques
+
+It's perfect for when you need to wrangle your data into shape and then teach a model to do tricks with it!
+
+## 🎟️ Getting Your Ticket to Ride
+
+Before you hop on the ModelTrainSet express, make sure you have:
+
+- Python 3.7+ installed (we're not cavemen, after all)
+- Git (for version control and looking cool)
+- Access to a Jira instance (if you're into that sort of thing)
+- Linux for training. (Blame triton)
+
+## 🧳 Packing Your Bags (Installation)
+
+We've upgraded our luggage handling system! Now you can choose between the classic pip setup or our new first-class Conda/Mamba experience.
+
+### 🌟 First Class: Conda/Mamba Setup (Recommended)
+
+1. If you haven't already, install Miniconda or Anaconda. For an even faster setup, install Mamba.
+
+2. Clone our luxury liner:
+
+   ```bash
+   git clone https://github.com/muddylemon/ModelTrainSet.git
+   cd ModelTrainSet
+   ```
+
+3. Create and activate your environment:
+
+   Using Conda:
+
+   ```bash
+   conda env create -f environment.yml
+   conda activate modeltrainset
+   ```
+
+   Or, for a faster setup with Mamba:
+
+   ```bash
+   mamba env create -f environment.yml
+   mamba activate modeltrainset
+   ```
+
+4. You're all set! Enjoy your first-class ML journey!
+
+#### 🛠️ Manual Setup (if you encounter issues)
+
+If you experience any problems with the automatic setup, you can try the following manual steps:
+
+```bash
+conda create --name modeltrainset python=3.10
+conda activate modeltrainset
+
+conda install pytorch cudatoolkit torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+
+conda install xformers -c xformers
+
+pip install bitsandbytes
+
+pip install "unsloth[conda] @ git+https://github.com/unslothai/unsloth.git"
+
+pip install transformers datasets accelerate tqdm pyyaml nltk pandas openpyxl sqlalchemy gitpython jira python-dotenv peft trl
+```
+
+Replace `conda` with `mamba` in the above commands if you're using Mamba for faster installation.
+
+### 🚶‍♂️ Economy Class: Pip Setup
+
+If you prefer the classic experience, follow these steps:
+
+1. Clone this bad boy:
+
+   ```bash
+   git clone https://github.com/muddylemon/ModelTrainSet.git
+   cd ModelTrainSet
+   ```
+
+2. Set up your virtual environment (because we're responsible adults):
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. Install the necessities:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## 🚂 All Aboard! (Usage)
+
+For detailed instructions on how to use ModelTrainSet, check out our [comprehensive tutorial](docs/modeltrainset-tutorial.md). It covers everything from creating datasets to training your own models!
+We also provide a tutorial for [Fill In Missing Word style datasets](tutorials/fill-in-missing-words-tutorial.md) and [TextTriplets style datasets](tutorials/text-triplets-tutorial.md).
+
+## 🛤️ Extending Your Journey
+
+Want to add a new stop on the ModelTrainSet line? Here's how:
+
+1. Create new loader, processor, or formatter classes in `dataset_creator/`.
+2. Add a new creator class in `dataset_creator/creators/`.
+3. Update `get_creator()` in `main.py` to recognize your new creation.
+
+For more details on contributing to ModelTrainSet, please read our [contribution guide](CONTRIBUTING.md).
+
+## 🆘 Help! I'm Lost
+
+If you find yourself in a dark tunnel:
+
+1. Check your Python version (`python --version`).
+2. Make sure you've installed all the requirements (`pip install -r requirements.txt`).
+3. Double-check your config file. Typos are the bane of every data scientist's existence!
+
+## 🤝 Join the Crew
+
+Contributions are welcome! Whether you're fixing bugs, adding features, or just making our jokes funnier, we'd love to have you on board! Check out our [contribution guide](CONTRIBUTING.md) to get started.
+
+## 📜 The Fine Print on Your Ticket Stub
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. (It's basically "use it however you want, just don't blame us if something goes wrong".)
+
+Remember, in the world of ModelTrainSet, every day is training day! Now go forth and model responsibly! 🚂💨
+
+
+Repository Structure: ModelTrainSet
+/.gitignore
+/CONTRIBUTING.md
+/LICENSE
+/README.md
+/config/
+/dataset_creator/
+/dev-requirements.txt
+/environment.yml
+/main.py
+/model_trainer/
+/pre-commit-config.txt
+/requirements.txt
+/tools/
+/tutorials/
+/tutorials/fill-in-missing-words-tutorial.md
+/tutorials/modeltrainset-tutorial.md
+/tutorials/text-triplets-tutorial.md
+/tools/__init__.py
+/tools/add-typos.py
+/tools/llm.py
+/tools/rate.py
+/tools/rewrite.py
+/tools/subjectify.py
+/model_trainer/__init__.py
+/model_trainer/config.py
+/model_trainer/hyperparameter_tuning.py
+/model_trainer/trainer.py
+/model_trainer/utils.py
+/dataset_creator/__init__.py
+/dataset_creator/base.py
+/dataset_creator/creators/
+/dataset_creator/formatters/
+/dataset_creator/loaders/
+/dataset_creator/processors/
+/dataset_creator/processors/__init__.py
+/dataset_creator/processors/fill_in_missing_words_processor.py
+/dataset_creator/processors/sentiment_analysis_processor.py
+/dataset_creator/processors/text_cleaner_processor.py
+/dataset_creator/processors/text_triplets_processor.py
+/dataset_creator/processors/tweet_processor.py
+/dataset_creator/loaders/__init__.py
+/dataset_creator/loaders/csv_loader.py
+/dataset_creator/loaders/excel_loader.py
+/dataset_creator/loaders/gitjira_loader.py
+/dataset_creator/loaders/json_loader.py
+/dataset_creator/loaders/sql_loader.py
+/dataset_creator/loaders/text_loader.py
+/dataset_creator/loaders/tweet_loader.py
+/dataset_creator/loaders/xml_loader.py
+/dataset_creator/formatters/__init__.py
+/dataset_creator/formatters/conversation_formatter.py
+/dataset_creator/formatters/gitjira_formatter.py
+/dataset_creator/formatters/json_lines_formatter.py
+/dataset_creator/formatters/text_triplets_formatter.py
+/dataset_creator/formatters/tweet_formatter.py
+/dataset_creator/creators/__init__.py
+/dataset_creator/creators/fill_in_missing_words_creator.py
+/dataset_creator/creators/generic_creator.py
+/dataset_creator/creators/gitjira_creator.py
+/dataset_creator/creators/text_triplets_creator.py
+/dataset_creator/creators/tweet_creator.py
+/config/csv_config.yaml
+/config/fill_in_missing_words_config.yaml
+/config/gitjira_config.yaml
+/config/json_config.yaml
+/config/sentiment_analysis_config.yaml
+/config/text_triplets_config.yaml
+/config/train_config.yaml
+/config/tweet_completion_config.yaml
+/config/tweet_subject_config.yaml
+
+
+File: /.gitignore
+Content: Skipped binary or ignored file
+
+File: /CONTRIBUTING.md
+Content:
+# Contributing to ModelTrainSet
+
+We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
+
+## We Develop with Github
+We use github to host code, to track issues and feature requests, as well as accept pull requests.
+
+## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
+Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
+
+1. Fork the repo and create your branch from `main`.
+2. If you've added code that should be tested, add tests.
+3. If you've changed APIs, update the documentation.
+4. Ensure the test suite passes.
+5. Make sure your code lints.
+6. Issue that pull request!
+
+## Any contributions you make will be under the MIT Software License
+In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
+
+## Report bugs using Github's [issues](https://github.com/yourusername/ModelTrainSet/issues)
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/yourusername/ModelTrainSet/issues/new); it's that easy!
+
+## Write bug reports with detail, background, and sample code
+
+**Great Bug Reports** tend to have:
+
+- A quick summary and/or background
+- Steps to reproduce
+  - Be specific!
+  - Give sample code if you can.
+- What you expected would happen
+- What actually happens
+- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
+
+## Use a Consistent Coding Style
+
+* Use 4 spaces for indentation rather than tabs
+* You can try running `black` for style unification
+
+## License
+By contributing, you agree that your contributions will be licensed under its MIT License.
+
+## References
+This document was adapted from the open-source contribution guidelines for [Facebook's Draft](https://github.com/facebook/draft-js/blob/master/CONTRIBUTING.md)
+
+
+File: /LICENSE
+Content: Skipped binary or ignored file
+
+File: /README.md
+Content: Skipped binary or ignored file
+
+File: /dev-requirements.txt
+Content:
+pre-commit
+black
+flake8
+pytest
+
+
+File: /environment.yml
+Content: Skipped binary or ignored file
+
+File: /main.py
+Content:
+import sys
+import argparse
+import logging
+
+from dataset_creator.creators.tweet_creator import TweetDatasetCreator
+from dataset_creator.creators.gitjira_creator import GitJiraDatasetCreator
+from dataset_creator.creators.text_triplets_creator import TextTripletsDatasetCreator
+from dataset_creator.creators.generic_creator import GenericDatasetCreator
+from dataset_creator.creators.fill_in_missing_words_creator import FillInMissingWordsDatasetCreator
+
+from model_trainer.trainer import ModelTrainer
+from model_trainer.utils import load_config, load_custom_dataset
+
+from model_trainer.hyperparameter_tuning import run_hyperparameter_tuning
+from unsloth import standardize_sharegpt
+
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+
+def check_dependencies():
+    required_modules = ['yaml', 'git', 'jira']
+    missing_modules = []
+
+    for module in required_modules:
+        try:
+            __import__(module)
+        except ImportError:
+            missing_modules.append(module)
+
+    if missing_modules:
+        print("Error: The following required modules are missing:")
+        for module in missing_modules:
+            print(f"  - {module}")
+        print("\nPlease install the missing modules using the following command:")
+        print("pip install -r requirements.txt")
+        sys.exit(1)
+
+
+def load_config(config_file: str) -> dict:
+    try:
+        import yaml
+        with open(config_file, 'r') as f:
+            return yaml.safe_load(f)
+    except FileNotFoundError:
+        logging.error(f"Configuration file not found: {config_file}")
+        sys.exit(1)
+    except yaml.YAMLError as e:
+        logging.error(f"Error parsing YAML configuration: {e}")
+        sys.exit(1)
+
+
+def get_creator(config):
+    creator_type = config['creator_type']
+    if creator_type == 'TweetDatasetCreator':
+        return TweetDatasetCreator(config)
+    elif creator_type == 'GitJiraDatasetCreator':
+        return GitJiraDatasetCreator(config)
+    elif creator_type == 'GenericDatasetCreator':
+        return GenericDatasetCreator(config)
+    elif creator_type == 'TextTripletsDatasetCreator':
+        return TextTripletsDatasetCreator(config)
+    elif creator_type == 'FillInMissingWordsDatasetCreator':
+        return FillInMissingWordsDatasetCreator(config)
+    else:
+        raise ValueError(f"Unknown creator type: {creator_type}")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Create datasets or train models for LLMs.")
+    parser.add_argument('--mode', choices=['dataset', 'train', 'tune'], required=True,
+                        help="Are you creating a dataset, training a model, or tuning hyperparameters?")
+    parser.add_argument('--config', type=str, required=True,
+                        help="Path to the YAML configuration file.")
+    parser.add_argument('--verbose', action='store_true',
+                        help="Enable verbose output")
+    parser.add_argument('--no-progress', action='store_true',
+                        help="Disable progress bars")
+    args = parser.parse_args()
+
+    config = load_config(args.config)
+    config['show_progress'] = not args.no_progress
+
+    if args.mode == 'dataset':
+        creator = get_creator(config)
+        dataset = creator.create_dataset()
+        creator.save_dataset(dataset, config['output_file'])
+    elif args.mode == 'train':
+        trainer = ModelTrainer(config)
+        dataset = load_custom_dataset(config['dataset_file'])
+        dataset = standardize_sharegpt(dataset)
+        train_dataset, eval_dataset = dataset.train_test_split(
+            test_size=0.1).values()
+        trained_model, model, tokenizer = trainer.train(
+            train_dataset, eval_dataset)
+        trainer.save_model(model, tokenizer)
+        if config.get('export_to_ollama'):
+            trainer.export_to_ollama(config['model_name'])
+    elif args.mode == 'tune':
+        best_params = run_hyperparameter_tuning(args.config)
+        logger.info(f"Best hyperparameters: {best_params}")
+
+
+if __name__ == "__main__":
+    main()
+
+
+File: /pre-commit-config.txt
+Content:
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+-   repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    -   id: black
+-   repo: https://github.com/pycqa/flake8
+    rev: 3.9.0
+    hooks:
+    -   id: flake8
+
+
+File: /requirements.txt
+Content:
+# Version control
+GitPython==3.1.43
+
+# Jira integration
+jira==3.8.0
+
+# HTTP client (used by jira)
+urllib3==1.26.15
+
+# Environment variable management
+python-dotenv==1.0.1
+
+# Natural language processing
+nltk==3.8.2
+
+# YAML parsing
+pyYAML==6.0.2
+
+# progress bar
+tqdm==4.65.0
+
+# Hyperparameter optimization
+optuna==2.10.0
+
+
+
+File: /tutorials/fill-in-missing-words-tutorial.md
+Content:
+# Tutorial: Creating a 'Fill in the Missing Words' Dataset
+
+This tutorial will guide you through the process of creating a dataset for training language models using the "fill in the missing word(s)" strategy. We'll use the ModelTrainSet project to accomplish this task.
+
+## Prerequisites
+
+- Python 3.7 or higher
+- Git
+- Basic knowledge of command-line operations
+
+## Step 1: Set Up the Environment
+
+1. Clone the ModelTrainSet repository:
+
+   ```bash
+   git clone https://github.com/muddylemon/ModelTrainSet.git
+   cd ModelTrainSet
+   ```
+
+2. Create and activate a virtual environment:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. Install the required packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Step 2: Prepare the Input Data
+
+1. Create a directory for your input text files:
+
+   ```bash
+   mkdir -p data/text_files
+   ```
+
+2. Add your text files to this directory. For example:
+
+   ```bash
+   echo "This is a sample sentence. It will be used to create our dataset." > data/text_files/sample.txt
+   ```
+
+## Step 3: Create the Configuration File
+
+Create a new file named `fill_in_missing_words_config.yaml` in the `config` directory with the following content:
+
+```yaml
+creator_type: FillInMissingWordsCreator
+input_directory: ./data/text_files
+output_file: ./datasets/fill_in_missing_words_dataset.json
+min_sentence_length: 10
+words_to_remove: 1
+formatter_type: conversation
+style: fill_in_the_blank
+```
+
+## Step 4: Implement the FillInMissingWordsProcessor
+
+Create a new file `dataset_creator/processors/fill_in_missing_words_processor.py`:
+
+```python
+from typing import List, Dict, Any
+import random
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
+from ..base import DataProcessor
+
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+
+class FillInMissingWordsProcessor(DataProcessor):
+    def __init__(self, min_sentence_length: int = 10, words_to_remove: int = 1):
+        self.min_sentence_length = min_sentence_length
+        self.words_to_remove = words_to_remove
+        self.stop_words = set(stopwords.words('english'))
+
+    def process_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        processed_data = []
+        for item in data:
+            sentences = sent_tokenize(item['text'])
+            for sentence in sentences:
+                words = word_tokenize(sentence)
+                if len(words) >= self.min_sentence_length:
+                    content_words = [word for word in words if word.lower() not in self.stop_words]
+                    if len(content_words) >= self.words_to_remove:
+                        words_to_remove = random.sample(content_words, self.words_to_remove)
+                        masked_sentence = ' '.join(['___' if word in words_to_remove else word for word in words])
+                        processed_data.append({
+                            'input': masked_sentence,
+                            'output': sentence
+                        })
+        return processed_data
+```
+
+## Step 5: Implement the FillInMissingWordsCreator
+
+Create a new file `dataset_creator/creators/fill_in_missing_words_creator.py`:
+
+```python
+from ..base import BaseDatasetCreator, DataLoader, DataProcessor, DataFormatter
+from ..loaders.text_loader import TextLoader
+from ..processors.fill_in_missing_words_processor import FillInMissingWordsProcessor
+from ..formatters.conversation_formatter import ConversationFormatter
+
+class FillInMissingWordsCreator(BaseDatasetCreator):
+    def get_loader(self) -> DataLoader:
+        return TextLoader()
+
+    def get_processor(self) -> DataProcessor:
+        return FillInMissingWordsProcessor(
+            min_sentence_length=self.config.get('min_sentence_length', 10),
+            words_to_remove=self.config.get('words_to_remove', 1)
+        )
+
+    def get_formatter(self) -> DataFormatter:
+        return ConversationFormatter()
+```
+
+## Step 6: Update the Main Script
+
+Ensure that the `main.py` file includes the new creator. Add the following import:
+
+```python
+from dataset_creator.creators.fill_in_missing_words_creator import FillInMissingWordsCreator
+```
+
+And update the `get_creator` function to include the new creator:
+
+```python
+def get_creator(config):
+    creator_type = config['creator_type']
+    if creator_type == 'FillInMissingWordsCreator':
+        return FillInMissingWordsCreator(config)
+    # ... (other creator types)
+```
+
+## Step 7: Run the Dataset Creation Process
+
+Execute the following command to create your dataset:
+
+```bash
+python main.py --mode dataset --config config/fill_in_missing_words_config.yaml
+```
+
+This will process your input text files and create a dataset in the specified output file.
+
+## Step 8: Verify the Output
+
+Check the contents of the output file (`datasets/fill_in_missing_words_dataset.json`) to ensure it contains the expected data. It should look something like this:
+
+```json
+[
+  {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Fill in the blank in the following sentence:\n\nThis is a sample ___. It will be used to create our dataset."
+      },
+      {
+        "role": "assistant",
+        "content": "sentence"
+      }
+    ]
+  }
+]
+```
+
+## Conclusion
+
+You have now successfully created a dataset using the "fill in the missing word(s)" strategy. This dataset can be used to train language models to predict missing words based on context. You can adjust the configuration parameters (such as `min_sentence_length` and `words_to_remove`) to create datasets of varying difficulty and complexity.
+
+Remember to experiment with different input texts and configuration settings to create the most suitable dataset for your specific use case.
+
+
+File: /tutorials/modeltrainset-tutorial.md
+Content:
+# ModelTrainSet Tutorial: From Data to Trained Model
+
+Welcome to the ModelTrainSet tutorial! This guide will walk you through the process of using ModelTrainSet to create custom datasets and train machine learning models. We'll cover three main scenarios:
+
+1. Creating a dataset from tweets
+2. Creating a dataset from Git and Jira data
+3. Training a model using your custom dataset
+
+## Prerequisites
+
+Before we begin, make sure you have:
+
+- Python 3.7+ installed
+- Git installed
+- ModelTrainSet cloned and set up (follow the installation instructions in the README)
+
+## Scenario 1: Creating a Dataset from Tweets
+
+Let's start by creating a dataset from a Twitter archive.
+
+### Step 1: Prepare Your Tweet Data
+
+1. Download your Twitter archive from Twitter settings.
+2. Locate the JSON file containing your tweets (usually named something like `tweet.js`).
+3. Move this file to your project directory, for example: `./data/tweets/mytweets.js`
+
+### Step 2: Configure the Dataset Creator
+
+Create a configuration file named `tweet_config.yaml` in the `config` directory with the following content:
+
+```yaml
+creator_type: TweetDatasetCreator
+formatter: TweetSubjectFormatter
+input_file: ./data/tweets/mytweets.js
+output_file: ./datasets/mytweets_dataset.json
+twitter_username: yourusername
+min_tweet_length: 25
+```
+
+### Step 3: Run the Dataset Creator
+
+Execute the following command:
+
+```bash
+python main.py --mode dataset --config config/tweet_config.yaml
+```
+
+This will process your tweets and create a dataset in the specified output file.
+
+## Scenario 2: Creating a Dataset from Git and Jira Data
+
+Now, let's create a dataset using Git commit history and Jira ticket information.
+
+### Step 1: Prepare Your Git and Jira Data
+
+1. Ensure you have a local Git repository you want to use.
+2. Have your Jira server URL and API token ready.
+
+### Step 2: Configure the Dataset Creator
+
+Create a configuration file named `gitjira_config.yaml` in the `config` directory:
+
+```yaml
+creator_type: GitJiraDatasetCreator
+repo_path: /path/to/your/local/repo
+jira_server: https://your-jira-instance.atlassian.net
+jira_email: your-email@example.com
+jira_api_token: your-jira-api-token
+jira_prefix: PROJECTKEY
+output_file: ./datasets/gitjira_dataset.json
+```
+
+Replace the placeholders with your actual information.
+
+### Step 3: Run the Dataset Creator
+
+Execute the following command:
+
+```bash
+python main.py --mode dataset --config config/gitjira_config.yaml
+```
+
+This will process your Git commits and Jira tickets to create a dataset.
+
+## Scenario 3: Training a Model Using Your Custom Dataset
+
+Now that we have created custom datasets, let's train a model using one of them.
+
+### Step 1: Prepare Your Training Configuration
+
+Create a configuration file named `train_config.yaml` in the `config` directory:
+
+```yaml
+model_name: mistralai/Mistral-7B-Instruct-v0.2
+max_seq_length: 2048
+load_in_4bit: true
+r: 16
+target_modules: 
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+lora_alpha: 16
+lora_dropout: 0.05
+bias: none
+use_gradient_checkpointing: true
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+warmup_steps: 100
+num_train_epochs: 3
+learning_rate: 2.0e-4
+logging_steps: 25
+weight_decay: 0.01
+dataset_num_proc: 4
+packing: true
+output_dir: ./outputs/trained_model
+push_to_hub: false
+dataset_file: ./datasets/mytweets_dataset.json
+```
+
+Adjust the `dataset_file` to point to the dataset you want to use for training.
+
+### Step 2: Run the Training Process
+
+Execute the following command:
+
+```bash
+python main.py --mode train --config config/train_config.yaml
+```
+
+This will start the training process using your custom dataset and the specified model configuration.
+
+### Step 3: Monitor Training Progress
+
+The training process will output logs showing the progress, loss, and other metrics. You can monitor these to see how your model is performing.
+
+### Step 4: Use the Trained Model
+
+Once training is complete, you'll find your trained model in the `output_dir` specified in your configuration file. You can now use this model for inference or further fine-tuning.
+
+## Conclusion
+
+Congratulations! You've now learned how to use ModelTrainSet to create custom datasets from various sources and train a model using those datasets. Here are some next steps you can take:
+
+1. Experiment with different data sources by creating new loaders and formatters.
+2. Try different model architectures and hyperparameters to improve performance.
+3. Use the trained model in your applications or push it to the Hugging Face Hub for sharing.
+
+Remember to check the ModelTrainSet documentation for more advanced features and options. Happy modeling!
+
+
+File: /tutorials/text-triplets-tutorial.md
+Content:
+# TextTriplets Workflow Tutorial
+
+This tutorial will guide you through the TextTriplets workflow in the ModelTrainSet project, from data loading to model training. We'll examine each step of the process and discuss the design choices made.
+
+## 1. Overview of TextTriplets
+
+The TextTriplets workflow is designed to create a dataset for training language models on sentence prediction tasks. It works by breaking text into groups of three sentences, where the model learns to predict the third sentence given the first two.
+
+## 2. Configuration
+
+First, let's look at the configuration file for TextTriplets:
+
+```yaml
+creator_type: TextTripletsDatasetCreator
+input_directory: ./data/text_files
+output_file: ./datasets/text_triplets_dataset.json
+```
+
+This configuration specifies:
+
+- The type of dataset creator to use
+- The input directory containing text files
+- The output file for the processed dataset
+
+This design allows for easy customization and extension. You can add more parameters to the config file as needed, without changing the core code.
+
+## 3. Data Loading
+
+The TextTripletsDatasetCreator uses the TextLoader class to load data:
+
+```python
+class TextLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        data = []
+        input_dir = config['input_directory']
+        for filename in os.listdir(input_dir):
+            if filename.endswith('.txt'):
+                with open(os.path.join(input_dir, filename), 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    cleaned_content = self.clean_text(content)
+                    data.append({'text': cleaned_content, 'filename': filename})
+        return data
+```
+
+The TextLoader is designed to handle multiple text files, cleaning each one as it's loaded. This approach allows for processing large datasets split across multiple files.
+
+## 4. Data Processing
+
+The TextTripletsProcessor class handles the core logic of creating the triplets:
+
+```python
+class TextTripletsProcessor(DataProcessor):
+    def process_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        processed_data = []
+        for item in data:
+            sentences = nltk.sent_tokenize(item['text'])
+            for i in range(len(sentences) - 2):
+                processed_data.append({
+                    'instruction': f"{sentences[i]} {sentences[i+1]}",
+                    'completion': sentences[i+2],
+                    'source': item['filename']
+                })
+        return processed_data
+```
+
+This processor creates overlapping triplets from the text, which allows the model to learn context across sentence boundaries. The inclusion of the source filename enables traceability and potential filtering later.
+
+## 5. Data Formatting
+
+The TextTripletsFormatter prepares the data for training:
+
+```python
+class TextTripletsFormatter(DataFormatter):
+    def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        entries = [
+            {
+                "conversations": [
+                    {
+                        "role": "user",
+                        "content": f"Given the following two sentences, predict the next sentence that would logically follow:\n\n{item['instruction']}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": item['completion']
+                    }
+                ],
+                "source": item['source']
+            }
+            for item in data
+        ]
+        import random
+        random.shuffle(entries)
+        return entries
+```
+
+The formatter structures the data as a conversation, making it suitable for training chatbot-style models. The random shuffling helps prevent the model from learning unintended patterns based on the order of the data.
+
+## 6. Dataset Creation
+
+The TextTripletsDatasetCreator ties everything together:
+
+```python
+class TextTripletsDatasetCreator(BaseDatasetCreator):
+    def get_loader(self) -> DataLoader:
+        return TextLoader()
+
+    def get_processor(self) -> DataProcessor:
+        return TextTripletsProcessor()
+
+    def get_formatter(self) -> DataFormatter:
+        return TextTripletsFormatter()
+```
+
+This class follows the Strategy pattern, allowing easy substitution of different loaders, processors, or formatters if needed.
+
+## 7. Model Training
+
+To train a model on the TextTriplets dataset, you would use a configuration like this:
+
+```yaml
+model_name: mistralai/Mistral-7B-Instruct-v0.2
+max_seq_length: 2048
+load_in_4bit: true
+r: 16
+target_modules: 
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+lora_alpha: 16
+lora_dropout: 0.05
+bias: none
+use_gradient_checkpointing: true
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+warmup_steps: 100
+num_train_epochs: 3
+learning_rate: 2.0e-4
+logging_steps: 25
+weight_decay: 0.01
+dataset_num_proc: 4
+packing: true
+output_dir: ./outputs/trained_model
+push_to_hub: false
+dataset_file: ./datasets/text_triplets_dataset.json
+```
+
+This configuration uses LoRA (Low-Rank Adaptation) for efficient fine-tuning of large language models. It's set up for the Mistral 7B model, but you can easily adapt it for other models.
+
+## 8. Running the Workflow
+
+To create the dataset:
+
+```bash
+python main.py --mode dataset --config config/text_triplets_config.yaml
+```
+
+To train the model:
+
+```bash
+python main.py --mode train --config config/train_config.yaml
+```
+
+## Conclusion
+
+The TextTriplets workflow demonstrates several key design principles:
+
+1. Modularity: Each step (loading, processing, formatting) is separate and interchangeable.
+2. Configuration-driven: Most parameters are set in config files, reducing the need for code changes.
+3. Flexibility: The system can handle various input formats and can be extended for different tasks.
+4. Efficiency: The use of LoRA and 4-bit quantization allows for fine-tuning large models on consumer hardware.
+
+By following this workflow, you can create a custom dataset from text files and use it to fine-tune a large language model for sentence prediction tasks.
+
+
+File: /tools/__init__.py
+Content:
+
+
+File: /tools/add-typos.py
+Content:
+from tools.llm import generate
+
+
+def addTypos(input_string: str, additional_instructions: str = "") -> str:
+
+    prompt = f"""
+    Return the following passage exactly as written except introduce one or more subtle typos, misspellings or other mistakes.
+    {additional_instructions}
+    Now return the rewritten text for the following:
+
+    {input_string}
+   """.strip()
+
+    rewritten, _ = generate(
+        prompt=prompt, model="llama3:latest", temperature=0.8, asJson=False)
+    rewritten = rewritten.replace("output:", "").strip()
+    return rewritten
+
+
+File: /tools/llm.py
+Content:
+import json
+import requests
+from typing import List, Tuple, Any
+
+# models
+CODELLAMA = "codellama:latest"
+QWEN2 = "qwen2:latest"
+PHI3 = "phi3:medium"
+DELPRO = "delpro"
+GEMMA = "gemma:7b"
+GEMMA_LATEST = "gemma:latest"
+LLAMA3 = "llama3:latest"
+MISTRAL = "mistral:latest"
+MISTRAL_OPENORCA = "mistral-openorca:latest"
+MIXTRAL = "mixtral:latest"
+REVYO = "revyo:latest"
+WIZARD = "wizard-vicuna-uncensored:13b"
+WIZARD_CODER = "wizardcoder:latest"
+ORCA2 = "orca2:latest"
+
+
+url = "http://localhost:11434/api/generate"
+systemPrompt = "You are a helpful assistant."
+
+
+def generate(prompt: str, context: List[Any] = [], model: str = LLAMA3,  systemPrompt: str = systemPrompt,
+             temperature: float = 0.8, asJson: bool = False,) -> Tuple[str, List[Any]]:
+    payload = {
+        "prompt": prompt,
+        "model": model,
+        "context": context,
+        "system": systemPrompt,
+        "temperature": temperature,
+        "stream": False
+    }
+    if asJson:
+        payload["format"] = "json"
+
+    payload_json = json.dumps(payload)
+
+    try:
+        r = requests.post(url, headers={
+                          "Content-Type": "application/json"}, data=payload_json, stream=False, timeout=10)
+        r.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        # Log the error
+        print(f"Request failed: {e}")
+        raise
+
+    try:
+        json_response = json.loads(r.text)
+    except json.JSONDecodeError:
+        # Log the error
+        print("Failed to parse JSON response")
+        raise
+
+    if "error" in json_response:
+        raise Exception(json_response["error"])
+
+    return json_response["response"], json_response["context"]
+
+
+File: /tools/rate.py
+Content:
+from tools.llm import generate
+
+default_rating_system = """
+Instructions:
+Rate the content on a scale of 1 to 10
+Content considered excellent and near perfect should be awarded 10
+Content that is poorly written, full of mistakes and poorly communicate their message should be awarded 1
+Your criteria is readability, communication effectiveness and literary style.
+"""
+
+
+def rate(input_string: str, additional_instructions: str = default_rating_system) -> str:
+
+    prompt = f"""
+Rate the following input fairly. Consider the input carefully before rendering a decision
+{additional_instructions}
+
+
+return your rating as a JSON object in this schema:
+
+    [{
+        "content": "Original content, truncated to no more than 500 characters...",
+        "reason": "Detail your reasoning for your rating in a short paragraph.",
+        "rating": 5
+    }]
+
+
+Now return the rating for the following content:
+
+    {input_string}
+""".strip()
+
+    rating, _ = generate(
+        prompt=prompt, model="llama3:latest", temperature=0.8, asJson=True)
+
+    # rating should be in correct schema
+    if
+
+    return rating
+
+
+File: /tools/rewrite.py
+Content:
+from tools.llm import generate
+
+
+def rewrite(input_string: str, additional_instructions: str = "") -> str:
+
+    prompt = f"""
+    Rewrite the following passage in your own words.
+    Cover all the main points but do not include any of the original text.
+    Use clear and professional language.
+    {additional_instructions}
+    Now return the rewritten text for the following:
+
+    {input_string}
+   """.strip()
+
+    rewritten, _ = generate(
+        prompt=prompt, model="llama3:latest", temperature=0.8, asJson=False)
+    rewritten = rewritten.replace("output:", "").strip()
+    return rewritten
+
+
+File: /tools/subjectify.py
+Content:
+from tools.llm import generate
+
+
+def subjectify(input_string: str) -> str:
+
+    prompt = f"""return the general subject of the given text in one word or short phrase not more than five words.
+    return only the word phrase, do not include output: or any other text except the word or short phrase.
+    
+    Examples:
+    input: i can count all the good software abstractions ever written on two hands
+    output: software abstractions
+    input: I want every rich person in this country to see what Flavor Flav is doing and understand, THAT is what you are supposed to be doing with your excess wealth. Sponsor athletes, sponsor art, spend your money on things for the collective without looking for a ROI. The ROI is cultural.
+    output: Flavor Fav wealth
+    input: The sun is shining over the verdant hills of Africa.
+    output: sunshine over African hills
+
+    Now return the subject of the following text:
+    {input_string}
+   """
+
+    subject, _ = generate(prompt=prompt, model="internlm2:latest",
+                          num_predict=50, temperature=0.3, asJson=False)
+    # if output: in subject, remove it
+    subject = subject.replace("output:", "").strip()
+    return subject
+
+
+File: /model_trainer/__init__.py
+Content:
+from .trainer import ModelTrainer
+from .utils import load_config, load_custom_dataset
+from .hyperparameter_tuning import run_hyperparameter_tuning
+
+__all__ = ['ModelTrainer', 'load_config',
+           'load_custom_dataset', 'run_hyperparameter_tuning']
+
+
+File: /model_trainer/config.py
+Content:
+class Config:
+    def __init__(self, config_dict):
+        self.model_name = config_dict.get('model_name')
+        self.max_seq_length = config_dict.get('max_seq_length')
+        self.load_in_4bit = config_dict.get('load_in_4bit', False)
+        self.r = config_dict.get('r')
+        self.target_modules = config_dict.get('target_modules')
+        self.lora_alpha = config_dict.get('lora_alpha')
+        self.lora_dropout = config_dict.get('lora_dropout')
+        self.bias = config_dict.get('bias')
+        self.use_gradient_checkpointing = config_dict.get(
+            'use_gradient_checkpointing', False)
+        self.random_state = config_dict.get('random_state')
+        self.per_device_train_batch_size = config_dict.get(
+            'per_device_train_batch_size')
+        self.gradient_accumulation_steps = config_dict.get(
+            'gradient_accumulation_steps')
+        self.warmup_steps = config_dict.get('warmup_steps')
+        self.num_train_epochs = config_dict.get('num_train_epochs')
+        self.max_steps = config_dict.get('max_steps')
+        self.learning_rate = config_dict.get('learning_rate')
+        self.logging_steps = config_dict.get('logging_steps')
+        self.weight_decay = config_dict.get('weight_decay')
+        self.dataset_num_proc = config_dict.get('dataset_num_proc')
+        self.packing = config_dict.get('packing', False)
+        self.output_dir = config_dict.get('output_dir')
+        self.push_to_hub = config_dict.get('push_to_hub', False)
+        self.hf_username = config_dict.get('hf_username')
+        self.trained_model_name = config_dict.get('trained_model_name')
+        self.dataset_file = config_dict.get('dataset_file')
+
+    def __repr__(self):
+        return f"Config({self.__dict__})"
+
+
+File: /model_trainer/hyperparameter_tuning.py
+Content:
+import optuna
+import json
+import logging
+from datasets import load_dataset
+from unsloth import FastLanguageModel
+from trl import SFTTrainer
+from transformers import TrainingArguments
+
+from .trainer import ModelTrainer
+from .utils import load_config
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+
+def load_and_prepare_data(config):
+    with open(config['dataset_file'], 'r') as f:
+        data = json.load(f)
+
+    prepared_data = []
+    for item in data:
+        for conv in item['conversations']:
+            prepared_data.append({
+                'instruction': conv['content'] if conv['role'] == 'user' else '',
+                'input': '',
+                'output': conv['content'] if conv['role'] == 'assistant' else ''
+            })
+
+    dataset = load_dataset("json", data={"train": prepared_data})
+    return dataset.train_test_split(test_size=0.1)  # 10% for validation
+
+
+def objective(trial, base_config, dataset):
+    config = base_config.copy()
+
+    # Define the hyperparameters to optimize
+    config.update({
+        'learning_rate': trial.suggest_loguniform('learning_rate', 1e-5, 1e-3),
+        'per_device_train_batch_size': trial.suggest_categorical('per_device_train_batch_size', [4, 8, 16]),
+        'gradient_accumulation_steps': trial.suggest_int('gradient_accumulation_steps', 1, 4),
+        'num_train_epochs': trial.suggest_int('num_train_epochs', 1, 5),
+        'warmup_ratio': trial.suggest_uniform('warmup_ratio', 0.0, 0.2),
+        'r': trial.suggest_int('r', 8, 32),
+        'lora_alpha': trial.suggest_int('lora_alpha', 16, 64),
+    })
+
+    trainer = ModelTrainer(config)
+    model, tokenizer = trainer.load_model()
+
+    # Prepare the dataset
+    train_dataset = FastLanguageModel.apply_chat_template(
+        dataset['train'],
+        tokenizer=tokenizer,
+        chat_template=config['chat_template'],
+    )
+    eval_dataset = FastLanguageModel.apply_chat_template(
+        dataset['test'],
+        tokenizer=tokenizer,
+        chat_template=config['chat_template'],
+    )
+
+    # Set up training arguments
+    training_args = TrainingArguments(
+        output_dir=f"./results/{trial.number}",
+        learning_rate=config['learning_rate'],
+        per_device_train_batch_size=config['per_device_train_batch_size'],
+        gradient_accumulation_steps=config['gradient_accumulation_steps'],
+        num_train_epochs=config['num_train_epochs'],
+        warmup_ratio=config['warmup_ratio'],
+        logging_dir=f"./logs/{trial.number}",
+        logging_steps=10,
+        evaluation_strategy="steps",
+        eval_steps=100,
+        save_strategy="steps",
+        save_steps=100,
+        load_best_model_at_end=True,
+    )
+
+    # Initialize the trainer
+    sft_trainer = SFTTrainer(
+        model=model,
+        tokenizer=tokenizer,
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
+        dataset_text_field="text",
+        max_seq_length=config['max_seq_length'],
+        dataset_num_proc=config['dataset_num_proc'],
+        packing=config['packing'],
+        args=training_args,
+    )
+
+    # Train the model
+    sft_trainer.train()
+
+    # Evaluate the model
+    eval_results = sft_trainer.evaluate()
+
+    return eval_results['eval_loss']
+
+
+def run_hyperparameter_tuning(config_path):
+    base_config = load_config(config_path)
+    dataset = load_and_prepare_data(base_config)
+
+    study = optuna.create_study(direction='minimize')
+    study.optimize(lambda trial: objective(trial, base_config, dataset),
+                   n_trials=base_config['hyperparameter_tuning']['n_trials'])
+
+    logger.info(f"Best trial:")
+    logger.info(f"  Value: {study.best_trial.value}")
+    logger.info(f"  Params: ")
+    for key, value in study.best_trial.params.items():
+        logger.info(f"    {key}: {value}")
+
+    # Save the best parameters
+    with open('best_params.json', 'w') as f:
+        json.dump(study.best_trial.params, f, indent=2)
+
+    return study.best_trial.params
+
+
+File: /model_trainer/trainer.py
+Content:
+import subprocess
+import logging
+
+from datasets import load_dataset
+from unsloth import FastLanguageModel, is_bfloat16_supported
+from transformers import TrainingArguments
+from trl import SFTTrainer
+
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+logger = logging.getLogger(__name__)
+
+
+class ModelTrainer:
+    def __init__(self, config):
+        self.config = config
+
+    def load_model(self):
+        model, tokenizer = FastLanguageModel.from_pretrained(
+            model_name=self.config['model_name'],
+            max_seq_length=self.config['max_seq_length'],
+            load_in_4bit=self.config['load_in_4bit'],
+        )
+
+        model = FastLanguageModel.get_peft_model(
+            model,
+            r=self.config['r'],
+            target_modules=self.config['target_modules'],
+            lora_alpha=self.config['lora_alpha'],
+            lora_dropout=self.config['lora_dropout'],
+            bias=self.config['bias'],
+            use_gradient_checkpointing=self.config['use_gradient_checkpointing'],
+            random_state=self.config['random_state'],
+        )
+
+        return model, tokenizer
+
+    def train(self, train_dataset, eval_dataset):
+        model, tokenizer = self.load_model()
+
+        training_args = TrainingArguments(
+            output_dir=self.config['output_dir'],
+            learning_rate=self.config['learning_rate'],
+            fp16=not is_bfloat16_supported(),
+            bf16=is_bfloat16_supported(),
+            per_device_train_batch_size=self.config['per_device_train_batch_size'],
+            gradient_accumulation_steps=self.config['gradient_accumulation_steps'],
+            num_train_epochs=self.config['num_train_epochs'],
+            warmup_ratio=self.config['warmup_ratio'],
+            logging_dir=f"{self.config['output_dir']}/logs",
+            logging_steps=10,
+            evaluation_strategy=self.config['evaluation']['evaluation_strategy'],
+            eval_steps=self.config['evaluation']['eval_steps'],
+            save_strategy=self.config['evaluation']['save_strategy'],
+            save_steps=self.config['evaluation']['save_steps'],
+            load_best_model_at_end=True,
+        )
+
+        trainer = SFTTrainer(
+            model=model,
+            tokenizer=tokenizer,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            dataset_text_field="text",
+            max_seq_length=self.config['max_seq_length'],
+            dataset_num_proc=self.config['dataset_num_proc'],
+            packing=self.config['packing'],
+            args=training_args,
+        )
+
+        trainer.train()
+        return trainer, model, tokenizer
+
+    def save_model(self, model, tokenizer):
+        model.save_pretrained(self.config['output_dir'])
+        tokenizer.save_pretrained(self.config['output_dir'])
+
+    def export_to_ollama(self, model_name):
+        subprocess.run(["ollama", "create", model_name,
+                       f"FROM {self.config['output_dir']}"])
+        logger.info(f"Model exported to Ollama as {model_name}")
+
+
+File: /model_trainer/utils.py
+Content:
+import yaml
+from datasets import load_dataset
+
+
+def load_config(config_path: str) -> dict:
+    with open(config_path, 'r') as f:
+        return yaml.safe_load(f)
+
+
+def load_custom_dataset(file_path: str):
+    return load_dataset(path=file_path, split="train")
+
+
+File: /dataset_creator/__init__.py
+Content:
+
+
+File: /dataset_creator/base.py
+Content:
+from abc import ABC, abstractmethod
+from typing import List, Dict, Any, Callable
+from tqdm import tqdm
+
+
+class DataLoader(ABC):
+    @abstractmethod
+    def load_data(self, config: Dict[str, Any], progress_callback: Callable[[int], None] = None) -> List[Dict]:
+        pass
+
+
+class DataProcessor(ABC):
+    @abstractmethod
+    def process_data(self, data: List[Dict], config: Dict[str, Any], progress_callback: Callable[[int], None] = None) -> List[Dict]:
+        pass
+
+
+class DataFormatter(ABC):
+    @abstractmethod
+    def format_data(self, data: List[Dict], config: Dict[str, Any], progress_callback: Callable[[int], None] = None) -> List[Dict]:
+        pass
+
+
+class BaseDatasetCreator:
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.loader = self.get_loader()
+        self.processor = self.get_processor()
+        self.formatter = self.get_formatter()
+
+    @abstractmethod
+    def get_loader(self) -> DataLoader:
+        pass
+
+    @abstractmethod
+    def get_processor(self) -> DataProcessor:
+        pass
+
+    @abstractmethod
+    def get_formatter(self) -> DataFormatter:
+        pass
+
+    def create_dataset(self, progress_callback: Callable[[int], None] = None) -> List[Dict]:
+        show_progress = self.config.get('show_progress', True)
+
+        data = self.loader.load_data(
+            self.config, progress_callback if not show_progress else None)
+
+        if show_progress:
+            data = tqdm(data, desc="Processing", total=len(data))
+        processed_data = self.processor.process_data(
+            data, self.config, progress_callback if not show_progress else None)
+
+        if show_progress:
+            processed_data = tqdm(
+                processed_data, desc="Formatting", total=len(processed_data))
+        return self.formatter.format_data(processed_data, self.config, progress_callback if not show_progress else None)
+
+    def save_dataset(self, dataset: List[Dict], output_file: str):
+        import os
+        import json
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(dataset, f, indent=2, ensure_ascii=False)
+
+
+File: /dataset_creator/processors/__init__.py
+Content:
+
+
+File: /dataset_creator/processors/fill_in_missing_words_processor.py
+Content:
+from typing import List, Dict, Any
+import random
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
+from ..base import DataProcessor
+
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+
+
+class FillInMissingWordsProcessor(DataProcessor):
+    def __init__(self, min_sentence_length: int = 10, words_to_remove: int = 1):
+        self.min_sentence_length = min_sentence_length
+        self.words_to_remove = words_to_remove
+        self.stop_words = set(stopwords.words('english'))
+
+    def process_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        processed_data = []
+        for item in data:
+            sentences = sent_tokenize(item['text'])
+            for sentence in sentences:
+                words = word_tokenize(sentence)
+                if len(words) >= self.min_sentence_length:
+                    content_words = [
+                        word for word in words if word.lower() not in self.stop_words]
+                    if len(content_words) >= self.words_to_remove:
+                        words_to_remove = random.sample(
+                            content_words, self.words_to_remove)
+                        masked_sentence = ' '.join(
+                            ['___' if word in words_to_remove else word for word in words])
+                        processed_data.append({
+                            'input': masked_sentence,
+                            'output': sentence
+                        })
+        return processed_data
+
+
+File: /dataset_creator/processors/sentiment_analysis_processor.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataProcessor
+
+
+
+class SentimentAnalysisProcessor(DataProcessor):
+    def process_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        from textblob import TextBlob
+        for item in data:
+            text = item.get(config['text_field'], '')
+            sentiment = TextBlob(text).sentiment.polarity
+            item['sentiment'] = sentiment
+        return data
+
+File: /dataset_creator/processors/text_cleaner_processor.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataProcessor
+
+
+class TextCleanerProcessor(DataProcessor):
+    def process_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        import re
+
+        def clean_text(text):
+            text = re.sub(r'[^\w\s]', '', text)
+            return text.lower()
+
+        for item in data:
+            for key, value in item.items():
+                if isinstance(value, str):
+                    item[key] = clean_text(value)
+        return data
+
+
+File: /dataset_creator/processors/text_triplets_processor.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataProcessor
+import nltk
+nltk.download('punkt')
+
+
+class TextTripletsProcessor(DataProcessor):
+    def process_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        processed_data = []
+        for item in data:
+            sentences = nltk.sent_tokenize(item['text'])
+            for i in range(len(sentences) - 2):
+                processed_data.append({
+                    'instruction': f"{sentences[i]} {sentences[i+1]}",
+                    'completion': sentences[i+2],
+                    'source': item['filename']
+                })
+        return processed_data
+
+
+File: /dataset_creator/processors/tweet_processor.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataProcessor
+
+
+class TweetProcessor(DataProcessor):
+    def process_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        filtered_tweets = self.filter_tweets(data, config['min_tweet_length'])
+        return self.sort_tweets(filtered_tweets)
+
+    def filter_tweets(self, tweets: List[Dict], min_length: int) -> List[Dict]:
+        return [
+            tweet['tweet'] for tweet in tweets
+            if len(tweet['tweet']['full_text']) >= min_length
+            and not tweet['tweet']['full_text'].startswith('@')
+        ]
+
+    def sort_tweets(self, tweets: List[Dict]) -> List[Dict]:
+        return sorted(tweets, key=lambda x: int(x['favorite_count']) + int(x['retweet_count']), reverse=True)
+
+
+File: /dataset_creator/loaders/__init__.py
+Content:
+
+
+File: /dataset_creator/loaders/csv_loader.py
+Content:
+import csv
+from typing import List, Dict, Any
+from ..base import DataLoader
+
+
+class CSVLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        data = []
+        with open(config['input_file'], 'r', encoding='utf-8') as f:
+            csv_reader = csv.DictReader(f)
+            for row in csv_reader:
+                data.append(row)
+        return data
+
+
+File: /dataset_creator/loaders/excel_loader.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataLoader
+
+class ExcelLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        import pandas as pd
+        df = pd.read_excel(config['input_file'])
+        return df.to_dict('records')
+
+
+File: /dataset_creator/loaders/gitjira_loader.py
+Content:
+from typing import Dict, Any, List
+from git import Repo
+from jira import JIRA
+import re
+from ..base import DataLoader
+
+
+class GitJiraLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        repo = Repo(config['repo_path'])
+        jira = JIRA(server=config['jira_server'], basic_auth=(
+            config['jira_email'], config['jira_api_token']), options={'verify': False})
+        data = []
+        for branch in repo.branches:
+            jira_info = self.get_jira_info(
+                branch.name, jira, config['jira_prefix'])
+            commits = list(repo.iter_commits(branch))
+            for i in range(len(commits) - 1):
+                current_commit = commits[i]
+                previous_commit = commits[i + 1]
+                diffs = previous_commit.diff(current_commit)
+                for diff in diffs:
+                    if diff.a_blob and diff.b_blob:
+                        before = diff.a_blob.data_stream.read().decode('utf-8', errors='ignore')
+                        diff_text = repo.git.diff(
+                            previous_commit, current_commit, '--', diff.a_path)
+                        data.append({
+                            'jira_info': jira_info,
+                            'commit_message': current_commit.message.strip(),
+                            'before': before,
+                            'diff': diff_text,
+                        })
+        return data
+
+    def get_jira_info(self, branch_name: str, jira: JIRA, jira_prefix: str) -> Dict:
+        ticket_match = re.match(f"{jira_prefix}-(\d+)", branch_name)
+        if not ticket_match:
+            return {}
+        ticket_number = ticket_match.group(0)
+        try:
+            issue = jira.issue(ticket_number)
+            return {
+                "id": issue.key,
+                "title": issue.fields.summary,
+                "description": issue.fields.description,
+                "type": str(issue.fields.issuetype),
+                "priority": str(issue.fields.priority),
+                "status": str(issue.fields.status),
+                "comments": [comment.body for comment in issue.fields.comment.comments]
+            }
+        except Exception as e:
+            logging.error(
+                f"Error fetching Jira info for {ticket_number}: {str(e)}")
+            return {}
+
+
+File: /dataset_creator/loaders/json_loader.py
+Content:
+import json
+from typing import List, Dict, Any, Callable
+from ..base import DataLoader
+
+
+class JSONLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any], progress_callback: Callable[[int], None] = None) -> List[Dict]:
+        with open(config['input_file'], 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        if not isinstance(data, list):
+            data = [data]
+
+        if progress_callback:
+            for i, item in enumerate(data):
+                progress_callback(int((i + 1) / len(data) * 100))
+
+        return data
+
+
+File: /dataset_creator/loaders/sql_loader.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataLoader
+
+
+class SQLLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        import sqlite3
+        conn = sqlite3.connect(config['database'])
+        cursor = conn.cursor()
+        cursor.execute(config['query'])
+        columns = [description[0] for description in cursor.description]
+        return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+
+File: /dataset_creator/loaders/text_loader.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataLoader
+import os
+import re
+import html
+import unicodedata
+
+
+class TextLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        data = []
+        input_dir = config['input_directory']
+        for filename in os.listdir(input_dir):
+            if filename.endswith('.txt'):
+                with open(os.path.join(input_dir, filename), 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    cleaned_content = self.clean_text(content)
+                    data.append(
+                        {'text': cleaned_content, 'filename': filename})
+        return data
+
+    def clean_text(self, text: str) -> str:
+        # Normalize Unicode characters
+        text = unicodedata.normalize('NFKC', text)
+
+        # Unescape HTML entities
+        text = html.unescape(text)
+
+        # Remove HTML tags
+        text = re.sub(r'<[^>]+>', '', text)
+
+        # Remove Markdown formatting
+        text = re.sub(r'(\*|_|`|#|\[|\]|\(|\)|\{|\}|~|=|\^)', '', text)
+
+        # Remove titles and headings (assuming they're on separate lines and in all caps or title case)
+        text = re.sub(r'^[A-Z\s]+$', '', text, flags=re.MULTILINE)
+        text = re.sub(r'^[A-Z][a-z]+([\s-][A-Z][a-z]+)*$',
+                      '', text, flags=re.MULTILINE)
+
+        # Remove special characters and weird punctuation, but keep some useful ones
+        text = re.sub(r'[^\w\s.,!?;:()\'"-]', '', text)
+
+        # Normalize ellipsis
+        text = re.sub(r'\.{3,}', '...', text)
+
+        # Normalize quotes
+        text = re.sub(r'[""]', '"', text)
+        text = re.sub(r"['']", "'", text)
+
+        # Remove extra whitespace and empty lines
+        text = re.sub(r'\s+', ' ', text)
+        text = re.sub(r'\n\s*\n', '\n\n', text)
+
+        # Ensure sentences end with proper punctuation
+        text = re.sub(r'([.!?])\s+([A-Z])', r'\1\n\2', text)
+
+        # Remove lone punctuation marks
+        text = re.sub(r'\s([.,!?;:](?:\s|$))', r'\1', text)
+
+        # Fix common OCR errors
+        # "0" to "o" at the beginning of words
+        text = re.sub(r'\b0([a-z])', r'o\1', text)
+
+        # Remove repeated punctuation
+        text = re.sub(r'([.,!?;:]){2,}', r'\1', text)
+
+        # Normalize spacing around punctuation
+        text = re.sub(r'\s+([.,!?;:])', r'\1', text)
+        text = re.sub(r'([.,!?;:])\s+', r'\1 ', text)
+
+        return text.strip()
+
+
+File: /dataset_creator/loaders/tweet_loader.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataLoader
+import json
+import re
+
+
+class TweetLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        with open(config['input_file'], 'r', encoding='utf-8') as f:
+            content = f.read()
+            json_str = re.sub(r'^window\.YTD\.tweets\.part0 = ', '', content)
+            return json.loads(json_str)
+
+
+File: /dataset_creator/loaders/xml_loader.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataLoader
+
+
+
+class XMLLoader(DataLoader):
+    def load_data(self, config: Dict[str, Any]) -> List[Dict]:
+        import xml.etree.ElementTree as ET
+        tree = ET.parse(config['input_file'])
+        root = tree.getroot()
+        return [elem.attrib for elem in root]
+
+
+File: /dataset_creator/formatters/__init__.py
+Content:
+
+
+File: /dataset_creator/formatters/conversation_formatter.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataFormatter
+
+
+class ConversationFormatter(DataFormatter):
+    def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        formatters = {
+            "sentence_completion": self._format_sentence_completion,
+            "email_reply": self._format_email_reply,
+            "dialogue_continuation": self._format_dialogue_continuation,
+            "question_answering": self._format_question_answering,
+            "text_summarization": self._format_text_summarization,
+            "translation": self._format_translation,
+            "sentiment_analysis": self._format_sentiment_analysis,
+            "code_generation": self._format_code_generation,
+            "paraphrasing": self._format_paraphrasing,
+            "fill_in_the_blank": self._format_fill_in_the_blank
+        }
+        style = config.get("style", "sentence_completion")
+
+        if style in formatters:
+            return formatters[style](data)
+        else:
+            raise ValueError(f"""Unknown style: {style}""")
+
+    def _format_sentence_completion(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user",
+                        "content": f"""Complete the following sentence: { item['partial_sentence']}"""},
+                    {"role": "assistant", "content": item['completion']}
+                ]
+            } for item in data
+        ]
+
+    def _format_email_reply(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user",
+                     "content": f"""Compose a reply to the following email:\n\n{item['email_body']}"""},
+                    {"role": "assistant", "content": item['reply']}
+                ]
+            } for item in data
+        ]
+
+    def _format_dialogue_continuation(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user",
+                        "content": f"""Continue this dialogue: \n\nPerson A: { item['person_a']}\nPerson B: {item['person_b']}\nPerson A: """},
+                    {"role": "assistant", "content": item['continuation']}
+                ]
+            } for item in data
+        ]
+
+    def _format_question_answering(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user",
+                     "content": f"""Context: {   item['context']}\n\nQuestion: {item['question']}"""},
+                    {"role": "assistant", "content": item['answer']}
+                ]
+            } for item in data
+        ]
+
+    def _format_text_summarization(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user", "content": f"""Summarize the following text: \n\n{
+                        item['full_text']}"""},
+                    {"role": "assistant", "content": item['summary']}
+                ]
+            } for item in data
+        ]
+
+    def _format_translation(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user", "content": f"""Translate the following {
+                        item['source_language']} text to {item['target_language']}: \n\n{item['source_text']}"""},
+                    {"role": "assistant", "content": item['translation']}
+                ]
+            } for item in data
+        ]
+
+    def _format_sentiment_analysis(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user", "content": f"""Analyze the sentiment of the following text: \n\n{
+                        item['text']}"""},
+                    {"role": "assistant", "content": f"""The sentiment of the text is {
+                        item['sentiment']}. {item.get('explanation', '')}"""}
+                ]
+            } for item in data
+        ]
+
+    def _format_code_generation(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user",
+                     "content": f"""Generate {item['language']} code for the following task: \n\n{item['task_description']}"""},
+                    {"role": "assistant", "content": item['code']}
+                ]
+            } for item in data
+        ]
+
+    def _format_paraphrasing(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user", "content": f"""Paraphrase the following sentence: \n\n{
+                        item['original_sentence']}"""},
+                    {"role": "assistant", "content": item['paraphrase']}
+                ]
+            } for item in data
+        ]
+
+    def _format_fill_in_the_blank(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user", "content": f"""Fill in the blank in the following sentence: \n\n{
+                        item['sentence_with_blank']}"""},
+                    {"role": "assistant", "content": item['filled_word']}
+                ]
+            } for item in data
+        ]
+
+
+File: /dataset_creator/formatters/gitjira_formatter.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataFormatter
+
+
+class GitJiraFormatter(DataFormatter):
+    def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        dataset = []
+        for item in data:
+            instruction = f"Given the Jira ticket '{item['jira_info'].get('title', '')}' and the previous code, implement the necessary changes. The commit message is: {item['commit_message']}"
+            dataset.append({
+                "conversations": [
+                    {
+                        "role": "user",
+                        "content": f"{instruction}\n\nInput:\n{item['before']}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": item['diff']
+                    }
+                ]
+            })
+        return dataset
+
+
+File: /dataset_creator/formatters/json_lines_formatter.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataFormatter
+
+
+
+class JSONLinesFormatter(DataFormatter):
+    def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        import json
+        formatted_data = []
+        for item in data:
+            formatted_data.append(json.dumps(item))
+        return formatted_data
+
+
+File: /dataset_creator/formatters/text_triplets_formatter.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataFormatter
+
+
+class TextTripletsFormatter(DataFormatter):
+    def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        entires = [
+            {
+                "conversations": [
+                    {
+                        "role": "user",
+                        "content": f"Given the following two sentences, predict the next sentence that would logically follow:\n\n{item['instruction']}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": item['completion']
+                    }
+                ],
+                "source": item['source']
+            }
+            for item in data
+        ]
+        # shuffle the entries
+        import random
+        random.shuffle(entires)
+        return entires
+
+
+File: /dataset_creator/formatters/tweet_formatter.py
+Content:
+from typing import List, Dict, Any
+from ..base import DataFormatter
+import re
+from tools.subjectify import subjectify
+
+
+class TweetSubjectFormatter(DataFormatter):
+    def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        dataset = []
+        for tweet in data:
+            subject = self.extract_subject(tweet['full_text'])
+            dataset.append({
+                "conversations": [
+                    {
+                        "role": "user",
+                        "content": f"Write a tweet in the style of @{config['twitter_username']} on this subject: {subject}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": tweet['full_text']
+                    }
+                ]
+            })
+        return dataset
+
+    def extract_subject(self, tweet_text: str) -> str:
+        tweet_text = re.sub(r'http\S+', '', tweet_text)
+        tweet_text = re.sub(r'@\w+', '', tweet_text)
+        subject = subjectify(tweet_text)
+        return subject
+
+
+class TweetCompletionFormatter(DataFormatter):
+    def format_data(self, data: List[Dict], config: Dict[str, Any]) -> List[Dict]:
+        dataset = []
+        for tweet in data:
+            first_half, second_half = self.split_tweet(tweet['full_text'])
+            dataset.append({
+                "conversations": [
+                    {
+                        "role": "user",
+                        "content": f"Complete this tweet in the style of @{config['twitter_username']}: {first_half}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": second_half
+                    }
+                ]
+            })
+        return dataset
+
+    def split_tweet(self, tweet_text: str) -> tuple:
+        tweet_text = re.sub(r'http\S+', '', tweet_text)
+        tweet_text = re.sub(r'@\w+', '', tweet_text)
+        words = tweet_text.split()
+        mid = len(words) // 2
+        return ' '.join(words[:mid]), ' '.join(words[mid:])
+
+
+File: /dataset_creator/creators/__init__.py
+Content:
+
+
+File: /dataset_creator/creators/fill_in_missing_words_creator.py
+Content:
+from typing import List, Dict, Any
+from ..base import BaseDatasetCreator, DataLoader, DataProcessor, DataFormatter
+from ..loaders.text_loader import TextLoader
+from ..formatters.conversation_formatter import ConversationFormatter
+from ..processors.fill_in_missing_words_processor import FillInMissingWordsProcessor
+
+
+class FillInMissingWordsDatasetCreator(BaseDatasetCreator):
+    def get_loader(self) -> DataLoader:
+        return TextLoader()
+
+    def get_processor(self) -> DataProcessor:
+        return FillInMissingWordsProcessor(
+            min_sentence_length=self.config.get('min_sentence_length', 10),
+            words_to_remove=self.config.get('words_to_remove', 1)
+        )
+
+    def get_formatter(self) -> DataFormatter:
+        return ConversationFormatter()
+
+
+File: /dataset_creator/creators/generic_creator.py
+Content:
+from ..base import BaseDatasetCreator, DataLoader, DataProcessor, DataFormatter
+from ..loaders.csv_loader import CSVLoader
+from ..loaders.excel_loader import ExcelLoader
+from ..loaders.json_loader import JSONLoader
+from ..loaders.sql_loader import SQLLoader
+from ..loaders.xml_loader import XMLLoader
+from ..processors.text_cleaner_processor import TextCleanerProcessor
+from ..processors.sentiment_analysis_processor import SentimentAnalysisProcessor
+from ..formatters.conversation_formatter import ConversationFormatter
+
+
+class GenericDatasetCreator(BaseDatasetCreator):
+    def get_loader(self) -> DataLoader:
+        loader_type = self.config.get('loader_type', '').lower()
+        loaders = {
+            'json': JSONLoader,
+            'csv': CSVLoader,
+            'excel': ExcelLoader,
+            'xml': XMLLoader,
+            'sql': SQLLoader
+        }
+        loader_class = loaders.get(loader_type)
+        if loader_class:
+            return loader_class()
+        else:
+            raise ValueError(f"Unknown loader type: {loader_type}")
+
+    def get_processor(self) -> DataProcessor:
+        processor_type = self.config.get('processor_type', '').lower()
+        processors = {
+            'text_cleaner': TextCleanerProcessor,
+            'sentiment_analysis': SentimentAnalysisProcessor
+        }
+        processor_class = processors.get(processor_type)
+        if processor_class:
+            return processor_class()
+        else:
+            return DataProcessor()  # Default processor
+
+    def get_formatter(self) -> DataFormatter:
+        formatter_type = self.config.get('formatter_type', '').lower()
+        formatters = {
+            'conversation': ConversationFormatter
+        }
+        formatter_class = formatters.get(formatter_type)
+        if formatter_class:
+            return formatter_class()
+        else:
+            return DataFormatter()  # Default formatter
+
+
+File: /dataset_creator/creators/gitjira_creator.py
+Content:
+from ..base import BaseDatasetCreator, DataLoader, DataProcessor, DataFormatter
+from ..loaders.gitjira_loader import GitJiraLoader
+from ..formatters.gitjira_formatter import GitJiraFormatter
+
+
+class GitJiraDatasetCreator(BaseDatasetCreator):
+    def get_loader(self) -> DataLoader:
+        return GitJiraLoader()
+
+    def get_processor(self) -> DataProcessor:
+        return DataProcessor()  # Use base class if no processing is needed
+
+    def get_formatter(self) -> DataFormatter:
+        return GitJiraFormatter()
+
+
+File: /dataset_creator/creators/text_triplets_creator.py
+Content:
+from ..base import BaseDatasetCreator, DataLoader, DataProcessor, DataFormatter
+from ..loaders.text_loader import TextLoader
+from ..processors.text_triplets_processor import TextTripletsProcessor
+from ..formatters.text_triplets_formatter import TextTripletsFormatter
+
+
+class TextTripletsDatasetCreator(BaseDatasetCreator):
+    def get_loader(self) -> DataLoader:
+        return TextLoader()
+
+    def get_processor(self) -> DataProcessor:
+        return TextTripletsProcessor()
+
+    def get_formatter(self) -> DataFormatter:
+        return TextTripletsFormatter()
+
+
+File: /dataset_creator/creators/tweet_creator.py
+Content:
+from ..base import BaseDatasetCreator, DataLoader, DataProcessor, DataFormatter
+from ..loaders.tweet_loader import TweetLoader
+from ..processors.tweet_processor import TweetProcessor
+from ..formatters.tweet_formatter import TweetSubjectFormatter, TweetCompletionFormatter
+
+
+class TweetDatasetCreator(BaseDatasetCreator):
+    def get_loader(self) -> DataLoader:
+        return TweetLoader()
+
+    def get_processor(self) -> DataProcessor:
+        return TweetProcessor()
+
+    def get_formatter(self) -> DataFormatter:
+        if self.config['formatter'] == 'TweetSubjectFormatter':
+            return TweetSubjectFormatter()
+        elif self.config['formatter'] == 'TweetCompletionFormatter':
+            return TweetCompletionFormatter()
+        else:
+            raise ValueError(f"Unknown formatter: {self.config['formatter']}")
+
+
+File: /config/csv_config.yaml
+Content:
+creator_type: GenericDatasetCreator
+loader_type: csv
+input_file: ./data/input.csv
+output_file: ./datasets/csv_dataset.json
+
+File: /config/fill_in_missing_words_config.yaml
+Content:
+creator_type: FillInMissingWordsCreator
+input_directory: ./data/text_files
+output_file: ./datasets/fill_in_missing_words_dataset.json
+min_sentence_length: 10
+words_to_remove: 1
+formatter_type: conversation
+style: fill_in_the_blank
+
+
+File: /config/gitjira_config.yaml
+Content:
+creator_type: GitJiraDatasetCreator
+repo_path: path/to/local/repo
+jira_server: https://your-jira-instance.atlassian.net
+jira_email: your-email@example.com
+jira_api_token: your-jira-api-token
+jira_prefix: PROJECTKEY
+output_file: ./data/gitjira/repo-name-dataset.json
+
+File: /config/json_config.yaml
+Content:
+creator_type: GenericDatasetCreator
+loader_type: json
+input_file: ./data/input.json
+output_file: ./datasets/json_dataset.json
+
+File: /config/sentiment_analysis_config.yaml
+Content:
+creator_type: GenericDatasetCreator
+loader_type: csv
+input_file: ./data/reviews.csv
+processor_type: sentiment_analysis
+formatter_type: conversation
+output_file: ./datasets/sentiment_analysis_dataset.json
+text_field: review_text
+input_field: review_text
+output_field: sentiment
+
+File: /config/text_triplets_config.yaml
+Content:
+creator_type: TextTripletsDatasetCreator
+input_directory: ./data/text_files
+output_file: ./datasets/text_triplets_dataset.json
+
+File: /config/train_config.yaml
+Content:
+model_name: mistralai/Mistral-7B-Instruct-v0.2
+max_seq_length: 2048
+load_in_4bit: true
+r: 16
+target_modules: 
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+lora_alpha: 16
+lora_dropout: 0.05
+bias: none
+use_gradient_checkpointing: true
+random_state: 42
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+warmup_steps: 5
+num_train_epochs: 1
+max_steps: -1
+learning_rate: 2.0e-4
+logging_steps: 25
+weight_decay: 0.01
+dataset_num_proc: 4
+packing: false
+output_dir: /mnt/g/modelville/outputs/muddylemon
+push_to_hub: true
+hf_username: lckidwell
+trained_model_name: muddylemon
+dataset_file: /mnt/g/modelville/datasets/
+export_to_ollama: true
+
+File: /config/tweet_completion_config.yaml
+Content:
+creator_type: TweetDatasetCreator
+formatter: TweetCompletionFormatter
+input_file: ./data/muddylemon-tweets.js
+output_file: ./datasets/muddylemon-completion-dataset.json
+twitter_username: nuddylemon
+min_tweet_length: 20
+
+File: /config/tweet_subject_config.yaml
+Content:
+creator_type: TweetDatasetCreator
+formatter: TweetSubjectFormatter
+input_file: path/to/tweet_archive.json
+output_file: ./data/tweets/username-subject-dataset.json
+twitter_username: username
+min_tweet_length: 25
+

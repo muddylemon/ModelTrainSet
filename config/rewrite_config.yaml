@@ -1,0 +1,7 @@
+creator_type: ParagraphRewriteCreator
+input_directory: ./data/text_files
+output_file: ./datasets/paragraph_rewrite_dataset.json
+min_paragraph_length: 50
+max_paragraphs_per_file: 100
+formatter_type: conversation
+style: rewriting

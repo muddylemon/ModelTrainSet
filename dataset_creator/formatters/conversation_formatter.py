@@ -14,7 +14,8 @@ class ConversationFormatter(DataFormatter):
             "sentiment_analysis": self._format_sentiment_analysis,
             "code_generation": self._format_code_generation,
             "paraphrasing": self._format_paraphrasing,
-            "fill_in_the_blank": self._format_fill_in_the_blank
+            "fill_in_the_blank": self._format_fill_in_the_blank,
+            "rewriting": self._format_rewriting
         }
         style = config.get("style", "sentence_completion")
 
@@ -28,7 +29,7 @@ class ConversationFormatter(DataFormatter):
             {
                 "conversations": [
                     {"role": "user",
-                        "content": f"""Complete the following sentence: { item['partial_sentence']}"""},
+                        "content": f"""Complete the following sentence: {item['partial_sentence']}"""},
                     {"role": "assistant", "content": item['completion']}
                 ]
             } for item in data
@@ -50,7 +51,7 @@ class ConversationFormatter(DataFormatter):
             {
                 "conversations": [
                     {"role": "user",
-                        "content": f"""Continue this dialogue: \n\nPerson A: { item['person_a']}\nPerson B: {item['person_b']}\nPerson A: """},
+                        "content": f"""Continue this dialogue: \n\nPerson A: {item['person_a']}\nPerson B: {item['person_b']}\nPerson A: """},
                     {"role": "assistant", "content": item['continuation']}
                 ]
             } for item in data
@@ -61,7 +62,7 @@ class ConversationFormatter(DataFormatter):
             {
                 "conversations": [
                     {"role": "user",
-                     "content": f"""Context: {   item['context']}\n\nQuestion: {item['question']}"""},
+                     "content": f"""Context: {item['context']}\n\nQuestion: {item['question']}"""},
                     {"role": "assistant", "content": item['answer']}
                 ]
             } for item in data
@@ -117,6 +118,17 @@ class ConversationFormatter(DataFormatter):
             {
                 "conversations": [
                     {"role": "user", "content": f"""Paraphrase the following sentence: \n\n{
+                        item['original_sentence']}"""},
+                    {"role": "assistant", "content": item['paraphrase']}
+                ]
+            } for item in data
+        ]
+
+    def _format_rewriting(self, data: List[Dict]) -> List[Dict]:
+        return [
+            {
+                "conversations": [
+                    {"role": "user", "content": f"""Rewrite the following passage in your own style: \n\n{
                         item['original_sentence']}"""},
                     {"role": "assistant", "content": item['paraphrase']}
                 ]
