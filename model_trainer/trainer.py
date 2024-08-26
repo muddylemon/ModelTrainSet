@@ -58,7 +58,6 @@ class ModelTrainer:
             model=model,
             tokenizer=tokenizer,
             train_dataset=train_dataset,
-            eval_dataset=eval_dataset,
             max_seq_length=self.config['max_seq_length'],
             dataset_num_proc=self.config['dataset_num_proc'],
             packing=self.config['packing'],
