@@ -31,4 +31,4 @@ push_to_hub: true
 hf_username: lckidwell
 trained_model_name: muddylemon
 dataset_file: /mnt/g/modelville/datasets/lckidwell/
-export_to_ollama: true
+export_to_ollama: false

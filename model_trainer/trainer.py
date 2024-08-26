@@ -38,7 +38,7 @@ class ModelTrainer:
 
         return model, tokenizer
 
-    def train(self, train_dataset, eval_dataset):
+    def train(self, train_dataset):
         model, tokenizer = self.load_model()
 
         training_args = TrainingArguments(
