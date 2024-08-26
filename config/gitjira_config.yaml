@@ -1,7 +1,0 @@
-creator_type: GitJiraDatasetCreator
-repo_path: path/to/local/repo
-jira_server: https://your-jira-instance.atlassian.net
-jira_email: your-email@example.com
-jira_api_token: your-jira-api-token
-jira_prefix: PROJECTKEY
-output_file: ./data/gitjira/repo-name-dataset.json

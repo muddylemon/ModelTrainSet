@@ -1,3 +1,0 @@
-creator_type: TextTripletsDatasetCreator
-input_directory: ./data/text_files
-output_file: ./datasets/text_triplets_dataset.json

@@ -1,4 +1,0 @@
-creator_type: GenericDatasetCreator
-loader_type: csv
-input_file: ./data/input.csv
-output_file: ./datasets/csv_dataset.json

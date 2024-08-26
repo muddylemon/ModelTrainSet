@@ -32,3 +32,7 @@ hf_username: lckidwell
 trained_model_name: muddylemon
 dataset_file: /mnt/g/modelville/datasets/lckidwell/
 export_to_ollama: false
+eval_steps: 100
+evaluation_strategy: steps
+save_steps: 100
+

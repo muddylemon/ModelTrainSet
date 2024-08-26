@@ -38,7 +38,7 @@ class ModelTrainer:
 
         return model, tokenizer
 
-    def train(self, train_dataset):
+    def train(self, train_dataset, eval_dataset):
         model, tokenizer = self.load_model()
 
         training_args = TrainingArguments(
@@ -58,11 +58,16 @@ class ModelTrainer:
             model=model,
             tokenizer=tokenizer,
             train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
             max_seq_length=self.config['max_seq_length'],
             dataset_num_proc=self.config['dataset_num_proc'],
             packing=self.config['packing'],
             args=training_args,
-            dataset_text_field="conversations",
+            eval_steps=self.config['eval_steps'],
+            evaluation_strategy=self.config['evaluation_strategy'],
+            save_strategy="steps",
+            save_steps=self.config['save_steps'],
+            load_best_model_at_end=True,
         )
 
         trainer.train()

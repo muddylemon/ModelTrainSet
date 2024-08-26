@@ -1,6 +1,0 @@
-creator_type: TweetDatasetCreator
-formatter: TweetSubjectFormatter
-input_file: path/to/tweet_archive.json
-output_file: ./data/tweets/username-subject-dataset.json
-twitter_username: username
-min_tweet_length: 25
