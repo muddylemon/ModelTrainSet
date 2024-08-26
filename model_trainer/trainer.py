@@ -62,6 +62,7 @@ class ModelTrainer:
             dataset_num_proc=self.config['dataset_num_proc'],
             packing=self.config['packing'],
             args=training_args,
+            dataset_text_field="conversations",
         )
 
         trainer.train()
