@@ -43,7 +43,7 @@ class ModelTrainer:
 
         training_args = TrainingArguments(
             output_dir=self.config['output_dir'],
-            learning_rate=self.config['learning_rate'],
+            learning_rate=float(self.config['learning_rate']),
             fp16=not is_bfloat16_supported(),
             bf16=is_bfloat16_supported(),
             per_device_train_batch_size=self.config['per_device_train_batch_size'],
