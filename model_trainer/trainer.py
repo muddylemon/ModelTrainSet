@@ -51,11 +51,7 @@ class ModelTrainer:
             num_train_epochs=self.config['num_train_epochs'],
             warmup_ratio=self.config['warmup_ratio'],
             logging_dir=f"{self.config['output_dir']}/logs",
-            logging_steps=10,
-            evaluation_strategy=self.config['evaluation']['evaluation_strategy'],
-            eval_steps=self.config['evaluation']['eval_steps'],
-            save_strategy=self.config['evaluation']['save_strategy'],
-            save_steps=self.config['evaluation']['save_steps'],
+            logging_steps=self.config['logging_steps'],
             load_best_model_at_end=True,
         )
 
@@ -64,7 +60,6 @@ class ModelTrainer:
             tokenizer=tokenizer,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
-            dataset_text_field="text",
             max_seq_length=self.config['max_seq_length'],
             dataset_num_proc=self.config['dataset_num_proc'],
             packing=self.config['packing'],
