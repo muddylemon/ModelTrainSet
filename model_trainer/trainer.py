@@ -52,7 +52,6 @@ class ModelTrainer:
             warmup_ratio=self.config['warmup_ratio'],
             logging_dir=f"{self.config['output_dir']}/logs",
             logging_steps=self.config['logging_steps'],
-            load_best_model_at_end=True,
         )
 
         trainer = SFTTrainer(
