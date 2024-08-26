@@ -8,4 +8,4 @@ def load_config(config_path: str) -> dict:
 
 
 def load_custom_dataset(file_path: str):
-    return load_dataset(path=file_path, split="train")
+    return load_dataset(path=file_path)
