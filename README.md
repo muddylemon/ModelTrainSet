@@ -102,8 +102,14 @@ If you prefer the classic experience, follow these steps:
 
 ## 🚂 All Aboard! (Usage)
 
-For detailed instructions on how to use ModelTrainSet, check out our [comprehensive tutorial](docs/modeltrainset-tutorial.md). It covers everything from creating datasets to training your own models!
-We also provide a tutorial for [Fill In Missing Word style datasets](tutorials/fill-in-missing-words-tutorial.md) and [TextTriplets style datasets](tutorials/text-triplets-tutorial.md).
+For detailed instructions on how to use ModelTrainSet, check out our [comprehensive tutorial](tutorials/modeltrainset-tutorial.md). It covers everything from creating datasets to training your own models!
+
+### Other Tutorials
+
+- [Fill In Missing Word style datasets](tutorials/fill-in-missing-words-tutorial.md)
+- [TextTriplets style datasets](tutorials/text-triplets-tutorial.md)
+- [Rewriter style datasets](tutorials/rewriter-tutorial.md)
+- [Text Completion style datasets](tutorials/text-completion-instructions-tutorial.md)
 
 ## 🛤️ Extending Your Journey
 
