@@ -99,13 +99,10 @@ def main():
         trainer = ModelTrainer(config)
         dataset = load_custom_dataset(config['dataset_file'])
 
-        print(type(dataset))
-        print(dataset[:2] if isinstance(dataset, list) else "Not a list")
         
         dataset = standardize_sharegpt(dataset)
  
-        print(type(dataset))
-        print(dataset[:2] if isinstance(dataset, list) else "Not a list")
+        dataset = dataset.map(lambda x: {"text": x["conversations"]})
 
         trained_model, model, tokenizer = trainer.train(dataset)
         trainer.save_model(model, tokenizer)
