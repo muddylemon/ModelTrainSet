@@ -97,11 +97,10 @@ def main():
         creator.save_dataset(dataset, config['output_file'])
     elif args.mode == 'train':
         trainer = ModelTrainer(config)
-        dataset = load_custom_dataset(config['dataset_file'])
+        dataset = load_custom_dataset(config['dataset_file']['train'])
         dataset = standardize_sharegpt(dataset)
  
-        trained_model, model, tokenizer = trainer.train(
-            dataset["train"])
+        trained_model, model, tokenizer = trainer.train(dataset)
         trainer.save_model(model, tokenizer)
         if config.get('export_to_ollama'):
             trainer.export_to_ollama(config['model_name'])
