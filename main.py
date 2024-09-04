@@ -101,7 +101,7 @@ def main():
         dataset = standardize_sharegpt(dataset)
  
         trained_model, model, tokenizer = trainer.train(
-            dataset)
+            dataset["train"])
         trainer.save_model(model, tokenizer)
         if config.get('export_to_ollama'):
             trainer.export_to_ollama(config['model_name'])
