@@ -98,8 +98,15 @@ def main():
     elif args.mode == 'train':
         trainer = ModelTrainer(config)
         dataset = load_custom_dataset(config['dataset_file'])
+
+        print(type(dataset))
+        print(dataset[:2] if isinstance(dataset, list) else "Not a list")
+        
         dataset = standardize_sharegpt(dataset)
  
+        print(type(dataset))
+        print(dataset[:2] if isinstance(dataset, list) else "Not a list")
+
         trained_model, model, tokenizer = trainer.train(dataset)
         trainer.save_model(model, tokenizer)
         if config.get('export_to_ollama'):
