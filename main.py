@@ -97,8 +97,8 @@ def main():
         creator.save_dataset(dataset, config['output_file'])
     elif args.mode == 'train':
         trainer = ModelTrainer(config)
-        dataset = load_custom_dataset(config['dataset_file']['train'])
-        dataset = standardize_sharegpt(dataset)
+        dataset = load_custom_dataset(config['dataset_file'])
+        dataset = standardize_sharegpt(dataset['train'])
  
         trained_model, model, tokenizer = trainer.train(dataset)
         trainer.save_model(model, tokenizer)
