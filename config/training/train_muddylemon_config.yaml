@@ -26,6 +26,8 @@ logging_steps: 25
 weight_decay: 0.01
 dataset_num_proc: 4
 packing: true
+optim: adamw_8bit
+lr_scheduler_type: linear
 output_dir: /mnt/g/modelville/lck
 push_to_hub: true
 hf_username: lckidwell
