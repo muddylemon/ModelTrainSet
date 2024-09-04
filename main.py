@@ -99,10 +99,9 @@ def main():
         trainer = ModelTrainer(config)
         dataset = load_custom_dataset(config['dataset_file'])
        # dataset = standardize_sharegpt(dataset)
-        train_dataset, eval_dataset = dataset.train_test_split(
-            test_size=0.1).values()
+ 
         trained_model, model, tokenizer = trainer.train(
-            train_dataset, eval_dataset)
+            dataset)
         trainer.save_model(model, tokenizer)
         if config.get('export_to_ollama'):
             trainer.export_to_ollama(config['model_name'])
