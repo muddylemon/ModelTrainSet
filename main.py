@@ -98,7 +98,7 @@ def main():
     elif args.mode == 'train':
         trainer = ModelTrainer(config)
         dataset = load_custom_dataset(config['dataset_file'])
-        dataset = standardize_sharegpt(dataset)
+       # dataset = standardize_sharegpt(dataset)
         train_dataset, eval_dataset = dataset.train_test_split(
             test_size=0.1).values()
         trained_model, model, tokenizer = trainer.train(
