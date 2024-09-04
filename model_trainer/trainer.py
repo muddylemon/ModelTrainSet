@@ -38,10 +38,11 @@ class ModelTrainer:
 
         return model, tokenizer
 
-    def train(self, train_dataset, eval_dataset):
+    def train(self, dataset):
         model, tokenizer = self.load_model()
 
         training_args = TrainingArguments(
+            optim=self.config['optim'],
             output_dir=self.config['output_dir'],
             learning_rate=float(self.config['learning_rate']),
             fp16=not is_bfloat16_supported(),
@@ -49,7 +50,9 @@ class ModelTrainer:
             per_device_train_batch_size=self.config['per_device_train_batch_size'],
             gradient_accumulation_steps=self.config['gradient_accumulation_steps'],
             num_train_epochs=self.config['num_train_epochs'],
-            warmup_ratio=self.config['warmup_ratio'],
+            warmup_steps=self.config['warmup_steps'],
+            weight_decay=self.config['weight_decay'],
+            lr_scheduler_type=self.config['lr_scheduler_type'],
             logging_dir=f"{self.config['output_dir']}/logs",
             logging_steps=self.config['logging_steps'],
         )
@@ -57,17 +60,11 @@ class ModelTrainer:
         trainer = SFTTrainer(
             model=model,
             tokenizer=tokenizer,
-            train_dataset=train_dataset,
-            eval_dataset=eval_dataset,
+            train_dataset=dataset,
             max_seq_length=self.config['max_seq_length'],
             dataset_num_proc=self.config['dataset_num_proc'],
             packing=self.config['packing'],
-            args=training_args,
-            eval_steps=self.config['eval_steps'],
-            evaluation_strategy=self.config['evaluation_strategy'],
-            save_strategy="steps",
-            save_steps=self.config['save_steps'],
-            load_best_model_at_end=True,
+            args=training_args
         )
 
         trainer.train()
