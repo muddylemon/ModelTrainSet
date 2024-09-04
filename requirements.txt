@@ -22,3 +22,5 @@ tqdm==4.65.0
 # Hyperparameter optimization
 optuna==2.10.0
 
+einops
+
